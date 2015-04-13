@@ -1,0 +1,131 @@
+* {
+	padding: 0px;
+	margin: 0px;
+}
+body {
+	padding: 0px;
+	margin: 0px;
+}
+.svg {
+	width: 25px;
+	height: 25px;
+	padding: 0px;
+	margin: 0px;
+}
+.svg path {
+	fill: #fff !important;
+}
+.wrap {
+	width: 100%;
+	height: auto;
+}
+.center {
+	width: 80%;
+	margin: 0 auto;
+}
+.clear {
+	clear: both;
+}
+.row {
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+}
+.header {
+	
+}
+.content {
+
+}
+
+
+.quick_link {
+	background-color: #242E51;
+}
+.quick_link ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
+.quick_link li {
+	display: inline-block;
+	padding: 5px 2px;
+	height: auto;
+}
+.quick_link li:active {
+	background: #4969A4;
+}
+.quick_link a {
+	color: #fff;
+	text-decoration: none;
+}
+.quick_link .left {
+	float: left;
+	background: transparent;
+	width: auto;
+}
+.quick_link .left a {
+	font-family: Verdana;
+	font-size: 11px;
+}
+.quick_link .left a:hover {
+	text-decoration: underline;
+}
+.quick_link .right {
+	float: right;
+	background: transparent;
+	width: auto;
+}
+.quick_link .right li {
+	padding-top: 3px;
+}
+.quick_link .right li .svg {
+	width: 15px;
+	height: 15px;
+	padding-top: 2px;
+}
+
+
+.menu {
+	background-color: #4A85D1;
+}
+.menu .center > ul {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;	
+}
+.menu .center > ul > li {
+	display: inline-block;
+	padding: 10px 0px;
+	margin: 0px 5px;
+}
+.menu .center > ul > li:first-child {
+	margin: 0px;
+	margin-right: 5px;
+}
+.menu a {
+	color: #fff;
+	text-decoration: none;
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.slide {
+
+}
+.latest_tweet {
+
+}
+.cont_switch {
+
+}
+.party_eco {
+
+}
+.poll {
+
+}
+.footer {
+
+}

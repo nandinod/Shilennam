@@ -1,0 +1,261 @@
+blockquote {
+	border-left: none;
+}
+blockquote > footer {
+	color: #fff;
+	font-style: italic;
+}
+
+.row-quick-link {
+	background-color: #242E51;
+}
+.row-quick-link a {
+	color: #fff;
+}
+.row-quick-link a:hover {
+	color: #ccc;
+}
+.row-quick-link img {
+	width: 15px;
+	height: 15px;
+}
+.row-menu .navbar {
+	margin-bottom: 0px;
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  	width: 100%;
+  	height: 450px;
+  	margin: auto;
+}
+.carousel-inner > .item > .carousel-caption {
+	top: 50px;
+	text-align: left;
+}
+.carousel-inner > .item > .carousel-caption h3 {
+	margin-top: -20px;
+	font-size: 38px;
+	font-weight: bold;
+	text-shadow:1px 1px 4px #0D0D0D
+}
+.carousel-inner > .item > .carousel-caption p {
+	margin-top: 40px;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow:1px 1px 4px #0D0D0D
+}
+.carousel-inner > .item > .carousel-caption a {
+	text-shadow: 0px 0px 0px;
+}
+
+.row-gov-party {
+	background: url("../res/patt/swirl_pattern2.png") repeat;
+}
+.row-gov-party > .container {
+	padding-bottom: 30px;
+}
+.row-gov-party > .container > h3 {
+	margin: 30px 0px;
+	color: #1F294C;
+}
+.row-gov-party > .container > .row > .col-sm-3 > .well img {
+	width: auto;
+	height: 100px;
+	margin: 0 auto;
+}
+.row-gov-party > .container > .row > .col-sm-3 > .well h4 {
+	text-align: center;
+	color: #4174B6;
+}
+
+.row-gov-party-eco > .container {
+	padding-bottom: 30px;
+}
+.row-gov-party-eco > .container > h3 {
+	margin: 30px 0px;
+	color: #1F294C;
+}
+.content > .economics > .col-lg-9 #pane > .table {
+	margin-top: 20px;
+}
+.row-gov-party-eco > .container > .table tr,
+.content > .economics > .col-lg-9 #pane > .table tr {
+	background-color: #E7E8EA;
+}
+.row-gov-party-eco > .container > .table tr:first-child,
+.content > .economics > .col-lg-9 #pane > .table tr:first-child {
+	background-color: #4174B6;
+}
+.row-gov-party-eco > .container > .table th,
+.content > .economics > .col-lg-9 #pane > .table th {
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	font-size: 18px;
+}
+.row-gov-party-eco > .container > .table th:first-child,
+.content > .economics > .col-lg-9 #pane > .table th:first-child {
+	padding-left: 50px;
+	text-align: left;
+}
+.row-gov-party-eco > .container > .table td,
+.content > .economics > .col-lg-9 #pane > .table td {
+	font-weight: 100;
+	color: #4174B6;
+	text-align: center;
+	border-color: #fff;
+}
+.row-gov-party-eco > .container > .table td:first-child,
+.content > .economics > .col-lg-9 #pane > .table td:first-child {
+	color: #292E42;
+	padding-left: 50px;
+	text-align: left;
+	font-size: 18px;
+}
+
+.poll {
+	background: url("../res/patt/cartographer.png") repeat center;
+}
+.poll > .container {
+	padding-bottom: 30px;
+}
+.poll > .container > h3 {
+	margin: 30px 0px;
+	color: #fff;
+}
+.poll > .container > h5 {
+	color: #fff;
+}
+.poll > .container > form {
+	margin-left: 30%;
+}
+.poll > .container > form label {
+	color: #fff;
+}
+
+.contact {
+	background: url("../res/patt/swirl_pattern2.png") repeat center;
+}
+.contact > .container {
+	padding-bottom: 30px;
+}
+.contact > .container > div h3 {
+	color: #1F294C;
+}
+.contact > .container > .col-lg-8 {
+	padding-top: 20px;
+}
+
+.footer {
+	background-color: #242E51;
+}
+.footer > .container {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 30px;
+}
+.footer > .container > .row a,
+.footer > .container > .row i {
+	color: #fff;
+	font-size: 10px;
+	font-family: Verdana;
+}
+.footer > .container > .row a {
+	padding: 0px 10px;
+	border-left: 1px solid #fff;
+}
+.footer > .container > .row a:first-child {
+	border-left: none;
+}
+
+.content {
+	background: url("../res/patt/swirl_pattern2.png") repeat center;
+}
+.content > .article-list,
+.content > .article,
+.content > .economics {
+	padding-bottom: 30px;
+}
+.content > .container > .col-lg-9,
+.content > .container > .col-lg-3 {
+	margin-top: 30px;
+}
+.content > .article-list > .col-lg-9 > .row {
+	margin-bottom: 30px;
+}
+.content > .article-list > .col-lg-9 > .row:last-child {
+	margin-bottom: 0px;
+}
+.content > .article-list > .col-lg-9 > .row > .col-lg-3 > img {
+	width: 100%;
+	height: auto;
+}
+.content > .article-list > .col-lg-9 > .row > .col-lg-7 > h4 a {
+	color: #000;
+}
+.content > .article-list > .col-lg-9 > .row > .col-lg-7 > span {
+	color: #467EC8;
+}
+.content > .article-list > .col-lg-3 > .panel > .panel-heading img,
+.content > .article > .col-lg-3 > .panel > .panel-heading img {
+	width: 20px;
+	height: 20px;
+	vertical-align: center;
+}
+.content > .article-list > .col-lg-3 > .tweets > .panel-body,
+.content > .article > .col-lg-3 > .tweets > .panel-body {
+	padding: 0px;
+}
+.content > .economics > .col-lg-3 > .classification > .panel-body > ul > li {
+	color: #6A7177;
+	font-weight: bold;
+	margin: 5px 0px;
+}
+.content > .economics > .col-lg-3 > .classification > .panel-body > ul > li > ul > li{
+	color: #6A7177;
+	font-weight: 100;
+	margin: 5px 0px;
+	list-style-type: none;
+}
+.content > .article-list > .col-lg-3 > .mini-poll > .panel-heading,
+.content > .article > .col-lg-3 > .mini-poll > .panel-heading,
+.content > .economics > .col-lg-3 > .mini-poll > .panel-heading {
+	background-color: #58626E;
+}
+.content > .economics > .col-lg-3 > .classification > .panel-heading {
+	background-color: #242F51;
+}
+.content > .article-list > .col-lg-3 > .mini-poll > .panel-heading span,
+.content > .article > .col-lg-3 > .mini-poll > .panel-heading span,
+.content > .economics > .col-lg-3 > .mini-poll > .panel-heading span,
+.content > .economics > .col-lg-3 > .classification > .panel-heading span {
+	color: #fff;
+}
+.content > .article > .col-lg-9 > header h3 {
+	color: #000;
+	font-weight: bold;
+}
+.content > .article > .col-lg-9 > header span {
+	color: #467EC8;
+	font-weight: bold;
+}
+.content > .article > .col-lg-9 > header img {
+	width: 100%;
+	height: auto;
+	margin: 10px 0px;
+}
+.content > .article > .col-lg-9 > section p {
+	font-size: 16px;
+	color: #000;
+}
+
+.content > .economics > .col-lg-9 > .tab-content > .tab-pane {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-top: none;
+	padding: 15px;
+}
+.content > .economics > .col-lg-9 > .tab-content #pane > p {
+	color: #4174B6;
+}
