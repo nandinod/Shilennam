@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?php
+		include '../backend/init.php';
+	?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +44,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Shilen Nam</a>
+	      <a class="navbar-brand" href="../">Shilen Nam</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,10 +53,10 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Databases <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li class="active"><a href="#">Diagrams</a></li>
-	            <li><a href="editor.html">Table editor</a></li>
-	            <li><a href="viewer.html">Data viewer</a></li>
-	            <li><a href="priviligies.html">User priviligies</a></li>
+	            <li class="active"><a href="diagrams.php">Diagrams</a></li>
+	            <li><a href="editor.php">Table editor</a></li>
+	            <li><a href="viewer.php">Data viewer</a></li>
+	            <li><a href="priviligies.php">User priviligies</a></li>
 	          </ul>
 	        </li>
 	        <li class="dropdown">
@@ -73,41 +76,78 @@
 
 	<div class="container">
 		<header class="header">
-			<h1 class="text-center">Diagrams</h1>
+			<h1 class="text-center">Data Viewer</h1>
 		</header>
 		<hr>
 		<div class="col-md-12">
 			<div class="col-md-2">
 				<ul class="list-group">
-					<a href="index.html" class="list-group-item">
+					<a href="index.php" class="list-group-item">
 						<span class="glyphicon glyphicon-book"></span> Instructions
 					</a>
-					<a href="diagrams.html" class="list-group-item active">
+					<a href="diagrams.php" class="list-group-item">
 						<span class="glyphicon glyphicon-list-alt"></span> Diagrams
 					</a>
-					<a href="editor.html" class="list-group-item disabled">
+					<a href="editor.php" class="list-group-item">
 						<span class="glyphicon glyphicon-pencil"></span> Table Editor
 					</a>
-					<a href="viewer.html" class="list-group-item">
+					<a href="viewer.php" class="list-group-item active">
 						<span class="glyphicon glyphicon-file"></span> Data Viewer
 					</a>
-					<a href="priviligies.html" class="list-group-item disabled">
+					<a href="priviligies.php" class="list-group-item disabled">
 						<span class="glyphicon glyphicon-user"></span> User Priviligies
 					</a>
 				</ul>
 			</div>
 			<div class="col-md-10">
-				<h3 class="text-left">Core Skeleton</h3>
-				<img src="../docs/diagrams/coreSkeleton.jpg" class="img-responsive">
-				<hr>
-				<h3 class="text-left">Objects in Diagram</h3>
-				<img src="../docs/diagrams/objectsInDiagram.jpg" class="img-responsive">
-				<hr>
-				<h3 class="text-left">Main Database</h3>
-				<img src="../docs/diagrams/mainDatabaseCompleted.jpg" class="img-responsive">
-			</div>			
+				
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="heading1">
+							<h4 class="panel-title">
+							<a data-toggle="collapse" href="#collapse1" data-parent="#accordion" aria-control="collapse1">
+								Parties
+							</a>
+							</h4>
+						</div>
+						<div id="collapse1" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="heading1">
+							<?php
+								$db = new DB();
+								$db->query("select code, title, acronym from party");
+								$rows = $db->resultset();
+							?>
+
+							<div class="panel-body" id="party_view">
+								<h4>This record is of Mongolian Government parties</h4>
+								<p>
+									There are total of <?php echo $db->rowCount(); ?> parties recorded
+									on our database. This list is not static as you can add more government
+									party records into our database. If you want to insert a new record 
+									<a href="editor.php#insert_party">click here</a> to insert or <a href="editor.php#edit_party">edit</a>.
+								</p>
+							</div>
+							<table class="table table-striped <?php if($db->rowCount()>12)echo'table-condensed';?>">
+								<tr>
+									<th>Code</th>
+									<th>Title</th>
+									<th>Acronym</th>
+								</tr>
+								<?php
+									foreach ($rows as $row) {
+										echo "<tr>";
+										echo "<td>".$row['code']."</td>";
+										echo "<td>".$row['title']."</td>";
+										echo "<td>".$row['acronym']."</td>";
+										echo "</tr>";
+									}
+								?>
+							</table>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-
 </body>
 </html>
