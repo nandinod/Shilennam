@@ -53,8 +53,8 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Databases <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li class="active"><a href="diagrams.php">Diagrams</a></li>
-	            <li><a href="editor.php">Table editor</a></li>
+	            <li><a href="diagrams.php">Diagrams</a></li>
+	            <li class="active"><a href="editor.php">Table editor</a></li>
 	            <li><a href="viewer.php">Data viewer</a></li>
 	            <li><a href="priviligies.php">User priviligies</a></li>
 	          </ul>
@@ -124,38 +124,39 @@
 									<div id="edit_party" class="tab-pane fade in active">
 										<?php
 											$db = new DB();
-											$db->query("select code, title, acronym from party");
+											$db->query("select id, code, title, acronym from party");
 											$rows = $db->resultset();
 										?>
 										<h4 class="text-danger text-center">
 											<span class="glyphicon glyphicon-warning-sign"></span> Be sure to verify the data that you are editing!
 										</h4>
-										<table class="table table-striped">
-											<tr>
-												<th>Code</th>
-												<th>Title</th>
-												<th>Acronym</th>
-												<th></th>
-												<th></th>
-											</tr>
-											<?php
-												foreach ($rows as $row) {
-													echo "<tr>";
-													echo "<td>".$row['code']."</td>";
-													echo "<td>".$row['title']."</td>";
-													echo "<td>".$row['acronym']."</td>";
-													echo "<td class='text-center'>
-													<a href='#'>
-													<span class='glyphicon glyphicon-pencil'></span>
-													</a></td>
-													<td class='text-center'><a href='#'>
-													<span class='glyphicon glyphicon-trash'></span>
-													</a>
-													</td>";
-													echo "</tr>";
-												}
-											?>
-										</table>
+										<div class="table-responsive">
+											<table class="table table-striped">
+												<tr>
+													<th>Code</th>
+													<th>Title</th>
+													<th>Acronym</th>
+													<th></th>
+												</tr>
+												<?php
+													foreach ($rows as $row) {
+														echo "<tr>";
+														echo "<td>".$row['code']."</td>";
+														echo "<td>".$row['title']."</td>";
+														echo "<td>".$row['acronym']."</td>";
+														echo "<td class='text-center'>
+														<button type='button' id='edit_".$row['id']."' class='btn btn-default' data-target='#edit_modal' data-toggle='modal'>
+														<span class='glyphicon glyphicon-pencil'></span>
+														</button>
+														<button type='button' class='btn btn-default'>
+														<span class='glyphicon glyphicon-trash'></span>
+														</button>
+														</td>";
+														echo "</tr>";
+													}
+												?>
+											</table>
+										</div>
 									</div>
 									<div id="insert_party" class="tab-pane fade in">
 										<h4 class="text-info">
@@ -181,6 +182,48 @@
 											</div>
 										</form>
 									</div>
+
+									
+									<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									   	  <form action="">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										        <h4 class="modal-title" id="myModalLabel">Edit Record</h4>
+										      </div>
+										      <div class="modal-body" id="edit_output">
+										       	<div class="form-group">
+										       		<label for="edit_party_code">Code : </label>
+										       		<input type="text" id="edit_party_code" class="form-control" disabled><br>
+										       		<input type="text" name="edit_party_code" class="form-control" placeholder="New Value">
+										       	</div>
+										       	<hr>
+										       	<div class="form-group">
+										       		<label for="edit_party_title">Title : </label>
+										       		<input type="text" id="edit_party_code" class="form-control" disabled><br>
+										       		<input type="text" name="edit_party_title" class="form-control" placeholder="New Value">
+										       	</div>
+										       	<hr>
+										       	<div class="form-group">
+										       		<label for="edit_party_acronym">Acronym : </label>
+										       		<input type="text" name="edit_party_acronym" class="form-control" disabled><br>
+										       		<input type="text" name="edit_party_acronym" class="form-control" placeholder="New Value">
+										       	</div>
+										       	<div id="editor_test">
+										       		
+										       	</div>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										        <input type="submit" class="btn btn-primary" value="Save Changes">
+										      </div>
+									      </form>
+									    </div>
+									  </div>
+									</div>
+
+
 								</div>
 							</div>
 						</div>

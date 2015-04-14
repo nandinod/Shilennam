@@ -53,9 +53,9 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Databases <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li class="active"><a href="diagrams.php">Diagrams</a></li>
+	            <li><a href="diagrams.php">Diagrams</a></li>
 	            <li><a href="editor.php">Table editor</a></li>
-	            <li><a href="viewer.php">Data viewer</a></li>
+	            <li class="active"><a href="viewer.php">Data viewer</a></li>
 	            <li><a href="priviligies.php">User priviligies</a></li>
 	          </ul>
 	        </li>

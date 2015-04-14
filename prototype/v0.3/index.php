@@ -28,7 +28,7 @@
 				<div class="pull-left">
 					<a href="#" class="btn btn-sm">Тусламж</a>
 					<a href="#" class="btn btn-sm">Бидэнтэй холбогдох</a>
-					<a href="manage/index.html" class="btn btn-sm">Менежмент</a>
+					<a href="manage/index.php" class="btn btn-sm">Менежмент</a>
 				</div>
 				<div class="pull-right">
 					<a href="https://www.facebook.com/pages/Shilennam/633649973430676" target="_blank" class="btn btn-sm"><img class='img-responsive' src="res/png/fb-white.png" alt="png"></a>
@@ -45,7 +45,7 @@
 				<div class="container">
 					<div id="generated-menus">
 						<div class="navbar-header">
-							<a href="index.html" class="navbar-brand">Шилэн Нам</a>
+							<a href="index.php" class="navbar-brand">Шилэн Нам</a>
 						</div>
 						<ul class="nav navbar-nav">
 							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">НАМУУДЫН САНХҮҮЖИЛТ <span class="caret"></span></a>
