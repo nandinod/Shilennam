@@ -1,0 +1,67 @@
+/* ******************** Create ******************* */
+CREATE TABLE outcome (id int(100) NOT NULL AUTO_INCREMENT, presentation double NOT NULL, advertisement double NOT NULL, management double NOT NULL, employee_salary double NOT NULL, chancery double NOT NULL, mail_and_shipping double NOT NULL, transportation double NOT NULL, assignment double NOT NULL, other double NOT NULL, total double NOT NULL, PRIMARY KEY (id));
+CREATE TABLE income (id int(100) NOT NULL AUTO_INCREMENT, from_inside double NOT NULL, from_people double NOT NULL, other_parties double NOT NULL, other double NOT NULL, total double NOT NULL, PRIMARY KEY (id));
+CREATE TABLE charity (id int(100) NOT NULL AUTO_INCREMENT, `from` varchar(100) NOT NULL, `to` varchar(100) NOT NULL, total double NOT NULL, PRIMARY KEY (id));
+CREATE TABLE finance (id int(10) NOT NULL AUTO_INCREMENT, charityid int(100) NOT NULL, incomeid int(100) NOT NULL, outcomeid int(100) NOT NULL, year varchar(50) NOT NULL, month varchar(2) NOT NULL, day varchar(3) NOT NULL, name varchar(100), donation double, remaining double NOT NULL, PRIMARY KEY (id), INDEX (id));
+CREATE TABLE people_aan (id int(100) NOT NULL AUTO_INCREMENT, partycode int(100) NOT NULL, candidateid int(100) NOT NULL, year int(100) NOT NULL, type varchar(50) NOT NULL, `size` double NOT NULL, PRIMARY KEY (id));
+CREATE TABLE candidate (id int(100) NOT NULL AUTO_INCREMENT, partycode int(100) NOT NULL, firstname varchar(100) NOT NULL, lastname varchar(100) NOT NULL, PRIMARY KEY (id));
+CREATE TABLE party (code int(100) NOT NULL AUTO_INCREMENT, title varchar(100) NOT NULL, acronym varchar(50), financeid int(10) NOT NULL, PRIMARY KEY (code), INDEX (code));
+ALTER TABLE finance ADD INDEX FKfinance10222 (outcomeid), ADD CONSTRAINT FKfinance10222 FOREIGN KEY (outcomeid) REFERENCES outcome (id);
+ALTER TABLE finance ADD INDEX FKfinance723574 (incomeid), ADD CONSTRAINT FKfinance723574 FOREIGN KEY (incomeid) REFERENCES income (id);
+ALTER TABLE finance ADD INDEX FKfinance906929 (charityid), ADD CONSTRAINT FKfinance906929 FOREIGN KEY (charityid) REFERENCES charity (id);
+ALTER TABLE party ADD INDEX FKparty266229 (financeid), ADD CONSTRAINT FKparty266229 FOREIGN KEY (financeid) REFERENCES finance (id);
+ALTER TABLE people_aan ADD INDEX FKpeople_aan489785 (candidateid), ADD CONSTRAINT FKpeople_aan489785 FOREIGN KEY (candidateid) REFERENCES candidate (id);
+ALTER TABLE people_aan ADD INDEX FKpeople_aan255556 (partycode), ADD CONSTRAINT FKpeople_aan255556 FOREIGN KEY (partycode) REFERENCES party (code);
+ALTER TABLE candidate ADD INDEX FKcandidate376486 (partycode), ADD CONSTRAINT FKcandidate376486 FOREIGN KEY (partycode) REFERENCES party (code);
+
+/* ********************* Drop ****************** */
+ALTER TABLE finance DROP FOREIGN KEY FKfinance10222;
+ALTER TABLE finance DROP FOREIGN KEY FKfinance723574;
+ALTER TABLE finance DROP FOREIGN KEY FKfinance906929;
+ALTER TABLE party DROP FOREIGN KEY FKparty266229;
+ALTER TABLE people_aan DROP FOREIGN KEY FKpeople_aan489785;
+ALTER TABLE people_aan DROP FOREIGN KEY FKpeople_aan255556;
+ALTER TABLE candidate DROP FOREIGN KEY FKcandidate376486;
+DROP TABLE IF EXISTS outcome;
+DROP TABLE IF EXISTS income;
+DROP TABLE IF EXISTS charity;
+DROP TABLE IF EXISTS finance;
+DROP TABLE IF EXISTS people_aan;
+DROP TABLE IF EXISTS candidate;
+DROP TABLE IF EXISTS party;
+
+/* ****************** Select ******************** */
+SELECT id, presentation, advertisement, management, employee_salary, chancery, mail_and_shipping, transportation, assignment, other, total FROM outcome;
+SELECT id, from_inside, from_people, other_parties, other, total FROM income;
+SELECT id, `from`, `to`, total FROM charity;
+SELECT id, charityid, incomeid, outcomeid, year, month, day, name, donation, remaining FROM finance;
+SELECT id, partycode, candidateid, year, type, `size` FROM people_aan;
+SELECT id, partycode, firstname, lastname FROM candidate;
+SELECT code, title, acronym, financeid FROM party;
+
+/* ******************** Insert ********************* */
+INSERT INTO outcome(id, presentation, advertisement, management, employee_salary, chancery, mail_and_shipping, transportation, assignment, other, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO income(id, from_inside, from_people, other_parties, other, total) VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO charity(id, `from`, `to`, total) VALUES (?, ?, ?, ?);
+INSERT INTO finance(id, charityid, incomeid, outcomeid, year, month, day, name, donation, remaining) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INSERT INTO people_aan(id, partycode, candidateid, year, type, `size`) VALUES (?, ?, ?, ?, ?, ?);
+INSERT INTO candidate(id, partycode, firstname, lastname) VALUES (?, ?, ?, ?);
+INSERT INTO party(code, title, acronym, financeid) VALUES (?, ?, ?, ?);
+
+/* ****************** Update ********************* */
+UPDATE outcome SET presentation = ?, advertisement = ?, management = ?, employee_salary = ?, chancery = ?, mail_and_shipping = ?, transportation = ?, assignment = ?, other = ?, total = ? WHERE id = ?;
+UPDATE income SET from_inside = ?, from_people = ?, other_parties = ?, other = ?, total = ? WHERE id = ?;
+UPDATE charity SET `from` = ?, `to` = ?, total = ? WHERE id = ?;
+UPDATE finance SET charityid = ?, incomeid = ?, outcomeid = ?, year = ?, month = ?, day = ?, name = ?, donation = ?, remaining = ? WHERE id = ?;
+UPDATE people_aan SET partycode = ?, candidateid = ?, year = ?, type = ?, `size` = ? WHERE id = ?;
+UPDATE candidate SET partycode = ?, firstname = ?, lastname = ? WHERE id = ?;
+UPDATE party SET title = ?, acronym = ?, financeid = ? WHERE code = ?;
+
+/* ******************* Delete ****************** */
+DELETE FROM outcome WHERE id = ?;
+DELETE FROM income WHERE id = ?;
+DELETE FROM charity WHERE id = ?;
+DELETE FROM finance WHERE id = ?;
+DELETE FROM people_aan WHERE id = ?;
+DELETE FROM candidate WHERE id = ?;
+DELETE FROM party WHERE code = ?;
