@@ -8,6 +8,3 @@ session_start();
 /* Requiring classes only if we need them
  * this prevents from unused classes requiring
  */
-spl_autoload_register(function($class) {
-    require_once 'core/' . $class . '.php';
-});

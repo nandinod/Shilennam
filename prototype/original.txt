@@ -1,0 +1,177 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+
+public class Zuragzurah2 extends JFrame {
+    
+    Graphics g;
+    
+    JLabel Zuragungulbl, Backgroundlbl, Mousedrawlbl, Zuragdahhsglbl,
+            Dursuudlbl, Parametrlbl, Zuraasniiurgunlbl, Toiroglbl,
+            Tegshuntsugtlbl, Gurvaljinlbl, Shuluunlbl, Tuvxlbl, Tuvylbl, Radiuslbl;
+    JComboBox<String> Zuragungucb, Backgroundcb;
+    JCheckBox Mousedrawchb;
+    String Zuragungucbb[] = {"Хар","Улаан","Ногоон"};
+    String Backgroundcbb[] = {"Хар","Улаан","Цэнхэр"};
+    JTextField Zuraasniiurguntf, Tuvxtf, Tuvytf,Radiustf;
+    JPanel Zurahtalbar;
+
+    JRadioButton Toirogrb, Tegshuntsugtrb, Gurvaljinrb, Shuluunrb;
+    
+        private int pointCount=0;
+	
+	//array of 1000 java.awt.Point references
+	private Point points[]=new Point[1000000];
+        
+        private ArrayList<Point> point = new ArrayList<>();
+    
+    Zuragzurah2 (){
+    
+        setTitle("Зургийн Программ");
+        setLayout(null);
+        
+        
+        
+        Zurahtalbar = new JPanel();
+        Zurahtalbar.setBounds(350, 140, 300, 240);
+        Zurahtalbar.setBackground(Color.white);
+        add(Zurahtalbar);
+        
+        Radiuslbl = new JLabel("Радиус:");
+        Radiuslbl.setBounds(200, 290, 100, 20);
+        add(Radiuslbl);
+        
+        Radiustf = new JTextField();
+        Radiustf.setBounds(200, 310, 100, 20);
+        add(Radiustf);
+        
+        Tuvylbl = new JLabel("Төв Y:");
+        Tuvylbl.setBounds(200, 240, 100, 20);
+        add(Tuvylbl);
+        
+        Tuvytf = new JTextField();
+        Tuvytf.setBounds(200, 260, 100, 20);
+        add(Tuvytf);
+        
+        Tuvxlbl = new JLabel("Төв X:");
+        Tuvxlbl.setBounds(200, 190, 100, 20);
+        add(Tuvxlbl);
+        
+        Tuvxtf = new JTextField(null);
+        Tuvxtf.setBounds(200, 210, 100, 20);
+        add(Tuvxtf);
+        
+        Mousedrawchb = new JCheckBox();
+        Mousedrawchb.setBounds(40, 80, 20, 20);
+        add(Mousedrawchb);
+        
+        Zuragungulbl = new JLabel("Зурах өнгө");
+        Zuragungulbl.setBounds(20, 30, 150, 20);
+        add(Zuragungulbl);
+        
+        Zuragungucb = new JComboBox(Zuragungucbb);
+        Zuragungucb.setBounds(100, 30, 150, 20);
+        add(Zuragungucb);
+        
+        Backgroundlbl = new JLabel("Дэвсгэр өнгө");
+        Backgroundlbl.setBounds(300, 30, 150, 20);
+        add(Backgroundlbl);
+        
+        Backgroundcb = new JComboBox(Backgroundcbb);
+        Backgroundcb.setBounds(400, 30, 150, 20);
+        add(Backgroundcb);
+        
+        Mousedrawlbl = new JLabel("Хулганаар зурах эсэх");
+        Mousedrawlbl.setBounds(70, 80, 150, 20);
+        add(Mousedrawlbl);
+        
+        Zuragdahhsglbl = new JLabel("Зурагдах хэсэг");
+        Zuragdahhsglbl.setBounds(450, 100, 150, 20);
+        add(Zuragdahhsglbl);
+        
+        Dursuudlbl = new JLabel("Дүрсүүд");
+        Dursuudlbl.setBounds(40, 140, 150, 20);
+        add(Dursuudlbl);
+        
+        Toiroglbl = new JLabel("Тойрог");
+        Toiroglbl.setBounds(50, 200, 150, 20);
+        add(Toiroglbl);
+        
+        Tegshuntsugtlbl = new JLabel("Тэгш өнцөгт");
+        Tegshuntsugtlbl.setBounds(50, 240, 150, 20);
+        add(Tegshuntsugtlbl);
+        
+        Gurvaljinlbl = new JLabel("Гурвалжин");
+        Gurvaljinlbl.setBounds(50, 280, 150, 20);
+        add(Gurvaljinlbl);
+        
+        Shuluunlbl = new JLabel("Шулуун");
+        Shuluunlbl.setBounds(50, 320, 150, 20);
+        add(Shuluunlbl);
+        
+        Parametrlbl = new JLabel("Параметрүүд");
+        Parametrlbl.setBounds(200, 140, 150, 20);
+        add(Parametrlbl);
+        
+        Zuraasniiurgunlbl = new JLabel("Зураасны өргөн");
+        Zuraasniiurgunlbl.setBounds(40, 370, 150, 20);
+        add(Zuraasniiurgunlbl);
+        
+        Zuraasniiurguntf = new JTextField(null);
+        Zuraasniiurguntf.setBounds(150, 370, 150, 20);
+        add(Zuraasniiurguntf);
+        
+        Toirogrb = new JRadioButton();
+        Toirogrb.setBounds(30, 200, 20, 20);
+        add(Toirogrb);
+        
+        Tegshuntsugtrb = new JRadioButton();
+        Tegshuntsugtrb.setBounds(30, 240, 20, 20);
+        add(Tegshuntsugtrb);
+        
+        Gurvaljinrb = new JRadioButton();
+        Gurvaljinrb.setBounds(30, 280, 20, 20);
+        add(Gurvaljinrb);
+        
+        Shuluunrb = new JRadioButton();
+        Shuluunrb.setBounds(30, 320, 20, 20);
+        add(Shuluunrb);
+        
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(Toirogrb);
+        bg.add(Gurvaljinrb);
+        bg.add(Tegshuntsugtrb);
+        bg.add(Shuluunrb);
+        
+        setSize(700, 450);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        Zurahtalbar.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent event) {
+				point.add(e.getPoint());
+                System.out.println(e.getPoint().toString());
+                repaint();
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+            }
+        });
+    }
+
+	@Override
+	public void paint(Graphics g) {
+		g2d = (Graphics2D) g;
+		for (Point p : point) {
+            int x = p.x + 95;
+            g2d.fillOval(x, p.y, 5, 5);
+        }
+	}
+
+    public static void main(String []args){
+        Zuragzurah2 app = new Zuragzurah2();
+        app.setDefaultCloseOperation(Zuragzurah2.EXIT_ON_CLOSE);
+}
+}

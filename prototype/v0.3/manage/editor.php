@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php
-		include '../backend/init.php';
+		include '../backend/DB_CN.php';
 	?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -123,7 +123,7 @@
 								<div class="tab-content">
 									<div id="edit_party" class="tab-pane fade in active">
 										<?php
-											$db = new DB();
+											$db = new db_cn\Connector();
 											$db->query("select id, code, title, acronym from party");
 											$rows = $db->resultset();
 										?>

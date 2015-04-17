@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php
-		include '../backend/init.php';
+		include '../backend/DB_CN.php';
 	?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -100,52 +100,70 @@
 				</ul>
 			</div>
 			<div class="col-md-10">
-				
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="heading1">
-							<h4 class="panel-title">
-							<a data-toggle="collapse" href="#collapse1" data-parent="#accordion" aria-control="collapse1">
-								Parties
-							</a>
-							</h4>
-						</div>
-						<div id="collapse1" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="heading1">
-							<?php
-								$db = new DB();
-								$db->query("select code, title, acronym from party");
-								$rows = $db->resultset();
-							?>
 
-							<div class="panel-body" id="party_view">
-								<h4>This record is of Mongolian Government parties</h4>
-								<p>
-									There are total of <?php echo $db->rowCount(); ?> parties recorded
-									on our database. This list is not static as you can add more government
-									party records into our database. If you want to insert a new record 
-									<a href="editor.php#insert_party">click here</a> to insert or <a href="editor.php#edit_party">edit</a>.
-								</p>
-							</div>
-							<table class="table table-striped <?php if($db->rowCount()>12)echo'table-condensed';?>">
-								<tr>
-									<th>Code</th>
-									<th>Title</th>
-									<th>Acronym</th>
-								</tr>
-								<?php
-									foreach ($rows as $row) {
-										echo "<tr>";
-										echo "<td>".$row['code']."</td>";
-										echo "<td>".$row['title']."</td>";
-										echo "<td>".$row['acronym']."</td>";
-										echo "</tr>";
-									}
-								?>
-							</table>
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="headingOne">
+				      <h4 class="panel-title">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				          Parties
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				      <div class="panel-body">
+				      	<?php
+							$db = new db_cn\Connector();
+							$db->query("select code, title, acronym from party");
+							$rows = $db->resultset();
+						?>
+				      	<h4>This record is of Mongolian Government parties</h4>
+							<p>
+								There are total of <?php echo $db->rowCount(); ?> parties recorded
+								on our database. This list is not static as you can add more government
+								party records into our database. If you want to insert a new record 
+								<a href="editor.php#insert_party">click here</a> to insert or <a href="editor.php#edit_party">edit</a>.
+							</p>
 						</div>
-						</div>
-					</div>
+						<table class="table table-striped <?php if($db->rowCount()>12)echo'table-condensed';?>">
+							<tr>
+								<th>Code</th>
+								<th>Title</th>
+								<th>Acronym</th>
+							</tr>
+							<?php
+								foreach ($rows as $row) {
+									echo "<tr>";
+									echo "<td>".$row['code']."</td>";
+									echo "<td>".$row['title']."</td>";
+									echo "<td>".$row['acronym']."</td>";
+									echo "</tr>";
+								}
+							?>
+						</table>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="headingTwo">
+				      <h4 class="panel-title">
+				        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				          Testing new database connection
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				      <div class="panel-body">
+				      	<?php
+				      		
+				      		$party = new db_cn\Table("party");
+				      		echo "<pre>", print_r($party->rawQuery("select * from party")), "</pre>";
+				      	?>
+				      </div>
+				    </div>
+				  </div>
 				</div>
+
 			</div>
 		</div>
 	</div>
