@@ -8,10 +8,8 @@
  */
 class TableModel extends Table {
     
-    private $table;
-    
-    function __construct($table) {
-        $this->table = $table;
+    public function __construct($table) {
+        parent::__construct($table);
     }
     
 }
