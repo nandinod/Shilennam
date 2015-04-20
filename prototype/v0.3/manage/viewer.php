@@ -157,7 +157,7 @@
 				      	<?php
 				      		
 				      		$party = new db_cn\Table("party");
-				      		echo "<pre>", print_r($party->rawQuery("select * from party")), "</pre>";
+				      		echo "<pre>", print_r($party->select()), "</pre>";
 				      	?>
 				      </div>
 				    </div>

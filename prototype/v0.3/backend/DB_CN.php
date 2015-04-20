@@ -97,150 +97,116 @@ namespace db_cn {
     }
 
     interface Select {
-
-        function setColumns($columns = null);
-
-        function limitRows($rows = "*");
-
-        function sortByColumn($column = null, $reverse = false);
+        function select($columns = "*", $condition = null, $sort = null, $sort_type = null, $rows = null);
     }
 
     interface Insert {
-        
+        function insert($columns = null, $values = array());
     }
 
     interface Update {
-        
+        function update();
     }
 
     interface Delete {
-        
+        function delete();
     }
 
     interface Create {
-        
+        function create();
     }
 
     interface Drop {
-        
+        function drop();
     }
 
     class Database {
         
     }
 
-    class Table implements Select {
+    class Table implements Select, Insert{
 
         private $connect = null;
-        private $table = null;
-        private $result = null;
-        private $columns = "*";
-        private $rows = "*";
-        private $is_rows_set = false;
-        private $options = "1";
-        private $is_options_set = false;
-        private $sort = "1";
-        private $sort_reverse = "ASC";
-        private $is_sort_set = false;
-        public $query = "";
+        private $query = "";
+        private $columns;
+        private $table;
+        private $condition;
+        private $sort;
+        private $sort_type;
+        private $rows;
 
         public function __construct($table) {
-            $this->table = $table;
+            $this->table = strtolower($table);
             $this->connect = new Connector();
         }
 
-        public function limitRows($rows = "*") {
-            if (isset($rows)) {
-                if ($rows = "*") {
-                    $this->is_rows_set = false;
-                } else {
-                    $row = preg_replace($rows, "\s+", "");
-                    if (is_numeric($row)) {
-                        $this->rows = $row;
-                        $this->is_rows_set = true;
-                    } else {
-                        $this->is_rows_set = false;
-                    }
-                }
-            }
-        }
-
-        public function setColumns($columns = null) {
+        public function select($columns = "*", $condition = null, $sort = null, $sort_type = null, $rows = null) {
+            $this->query = "SELECT";
+            $columns_set = false;
+            $condition_set = false;
+            $sort_set = false;
+            $rows_set = false;
+            
             if (isset($columns)) {
-                if (is_array($columns)) {
-                    $cols = "";
-                    foreach ($columns as $col) {
-                        $cols += preg_replace($col, "\s+", "");
+                $this->columns = $columns;
+                $columns_set = true;
+            }
+            if (isset($condition)) {
+                $this->condition = $condition;
+                $condition_set = true;
+            }
+            if (isset($sort)) {
+                $this->sort = $sort;
+                if (isset($sort_type)) {
+                    if (strtolower($sort_type) == "asc") {
+                        $this->sort_type = "ASC";
+                    } else if (strtolower($sort_type) == "desc") {
+                        $this->sort_type = "DESC";
                     }
-                    $cols = substr($cols, 0, -1);
-                    $this->columns = $cols;
-                } else if ($columns == "*") {
-                    $this->columns = "*";
                 } else {
-                    $columns = preg_replace($col, "\s+", "");
-                    $this->columns = $columns;
+                    $this->sort_type = "ASC";
                 }
+                $sort_set = true;
+            }
+            if (isset($rows)) {
+                $this->rows = $rows;
+                $rows_set = true;
+            }
+            
+            if ($columns_set) {
+                $this->query .= " ".$this->columns." FROM ".$this->table;
+                if ($condition_set) {
+                    $this->query .= " WHERE ".$this->condition;
+                }
+                if ($sort_set) {
+                    $this->query .= " ORDER BY ".$this->sort." ".$this->sort_type;
+                }
+                if ($rows_set) {
+                    $this->query .= " LIMIT ".$this->rows;
+                }
+                $this->query .= ";";
+                $this->connect->query($this->query);
+                return $this->connect->resultset();
             }
         }
 
-        public function sortByColumn($column = null, $reverse = false) {
-            if (isset($column) && ($reverse | !$reverse)) {
-                $col = str_replace($column, "\s+", "");
-                $this->sort = $col;
-                if ($reverse) {
-                    $this->sort_reverse = "ASC";
-                } else {
-                    $this->sort_reverse = "DESC";
+        public function insert($columns = null, $values = array()) {
+            $this->query = "INSERT INTO ".$this->table." (";
+            if (isset($columns)) {
+                $cols = preg_replace("/\s+/", "", $columns);
+                $cols = strtolower($cols);
+                $this->query .= $cols . ") VALUES ";
+                $this->query .= "(";
+                
+                for ($i = 0; $i < count($values); $i++) {
+                    $this->query .= $values[$i].", ";
                 }
-                $this->is_sort_set = true;
+                
+                $this->query = substr($this->query, 0, -2);
+                $this->query .= ");";
+                $this->connect->query($this->query);
+                $this->connect->execute();
             }
-        }
-
-        public function result() {
-            if (
-                    isset($this->table) &&
-                    isset($this->columns) &&
-                    isset($this->rows) &&
-                    isset($this->options) &&
-                    isset($this->sort)) {
-
-                try {
-                    $query = "SELECT :columns FROM :table";
-                    if ($this->is_options_set) {
-                        $query += " WHERE 1";
-                    }
-                    if ($this->is_sort_set) {
-                        $query += " ORDER BY :sort :sort_rev";
-                    }
-                    if ($this->is_rows_set) {
-                        $query += " LIMIT :rows";
-                    }
-                    $this->connect->query($query);
-                    $this->connect->bind(":columns", $this->columns);
-                    $this->connect->bind(":table", $this->table);
-                    if ($this->is_options_set) {
-                        $this->connect->bind(":options", $this->options);
-                    }
-                    if ($this->is_sort_set) {
-                        $this->connect->bind(":sort", $this->sort);
-                        $this->connect->bind(":sort_rev", $this->sort_reverse);
-                    }
-                    if ($this->is_rows_set) {
-                        $this->connect->bind(":rows", $this->rows);
-                    }
-                    $this->result = $this->connect->resultset();
-                } catch (Exception $ex) {
-                    echo "<pre>", print_r($ex), "</pre>";
-                }
-            } else {
-                $this->result = null;
-            }
-            return $this->result;
-        }
-        
-        public function rawQuery($query) {
-            $this->connect->query($query);
-            return $this->connect->resultset();
         }
 
     }

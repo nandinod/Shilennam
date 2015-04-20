@@ -131,7 +131,7 @@
 											<span class="glyphicon glyphicon-warning-sign"></span> Be sure to verify the data that you are editing!
 										</h4>
 										<div class="table-responsive">
-											<table class="table table-striped">
+											<table class="table table-striped table-bordered">
 												<tr>
 													<th>Code</th>
 													<th>Title</th>
@@ -145,7 +145,7 @@
 														echo "<td>".$row['title']."</td>";
 														echo "<td>".$row['acronym']."</td>";
 														echo "<td class='text-center'>
-														<button type='button' id='edit_".$row['id']."' class='btn btn-default' data-target='#edit_modal' data-toggle='modal'>
+														<button type='button' id='party_edit_".$row['id']."' class='btn btn-default' data-target='#edit_modal' data-toggle='modal'>
 														<span class='glyphicon glyphicon-pencil'></span>
 														</button>
 														<button type='button' class='btn btn-default'>
@@ -162,7 +162,7 @@
 										<h4 class="text-info">
 											Be sure to check your credentials before you submit data
 										</h4>
-										<form action="../backend/management_operator/data_add.php" method="post">
+										<form action="../backend/Editor.php" method="post">
 											<div class="form-group">
 												<label for="party-code">Code : </label>
 												<input type="text" class="form-control" id="party-code" name="party-code">
@@ -173,11 +173,10 @@
 											</div>
 											<div class="form-group">
 												<label for="party-acronym">Acronym</label>
-												<input type="text" class="form-control" id="party-title"
-												name="party-acronym">
+												<input type="text" class="form-control" id="party-title" name="party-acronym">
 											</div>
 											<div class="form-group">
-												<input type="submit" class="btn btn-primary" value="Add" name="party-add">
+												<input type="submit" class="btn btn-primary" value="Add New Party Record" name="action">
 												<input type="reset" class="btn btn-default" value="Clear">
 											</div>
 										</form>
@@ -195,20 +194,24 @@
 										      <div class="modal-body" id="edit_output">
 										       	<div class="form-group">
 										       		<label for="edit_party_code">Code : </label>
-										       		<input type="text" id="edit_party_code" class="form-control" disabled><br>
-										       		<input type="text" name="edit_party_code" class="form-control" placeholder="New Value">
+										       		<div class="input-group">
+										       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
+										       			<input type="text" id="edit_party_code" class="form-control" readonly="true">	
+										       		</div>
 										       	</div>
-										       	<hr>
 										       	<div class="form-group">
 										       		<label for="edit_party_title">Title : </label>
-										       		<input type="text" id="edit_party_code" class="form-control" disabled><br>
-										       		<input type="text" name="edit_party_title" class="form-control" placeholder="New Value">
+										       		<div class="input-group">
+										       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
+										       			<input type="text" id="edit_party_title" class="form-control" readonly="true">
+										       		</div>
 										       	</div>
-										       	<hr>
 										       	<div class="form-group">
 										       		<label for="edit_party_acronym">Acronym : </label>
-										       		<input type="text" name="edit_party_acronym" class="form-control" disabled><br>
-										       		<input type="text" name="edit_party_acronym" class="form-control" placeholder="New Value">
+										       		<div class="input-group">
+										       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
+										       			<input type="text" id="edit_party_acronym" class="form-control" readonly="true">
+										       		</div>
 										       	</div>
 										       	<div id="editor_test">
 										       		
