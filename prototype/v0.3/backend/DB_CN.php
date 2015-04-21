@@ -12,7 +12,7 @@ namespace db_cn {
 
         private $host = "127.0.0.1";
         private $user = "root";
-        private $pass = "acep123";
+        private $pass = "";
         private $dbname = "prototype";
         private $dbh;
         private $error;
@@ -189,6 +189,56 @@ namespace db_cn {
                 return $this->connect->resultset();
             }
         }
+        
+        public function selectFirst($columns = "*", $condition = null, $sort = null, $sort_type = null, $rows = null) {
+            $this->query = "SELECT";
+            $columns_set = false;
+            $condition_set = false;
+            $sort_set = false;
+            $rows_set = false;
+            
+            if (isset($columns)) {
+                $this->columns = $columns;
+                $columns_set = true;
+            }
+            if (isset($condition)) {
+                $this->condition = $condition;
+                $condition_set = true;
+            }
+            if (isset($sort)) {
+                $this->sort = $sort;
+                if (isset($sort_type)) {
+                    if (strtolower($sort_type) == "asc") {
+                        $this->sort_type = "ASC";
+                    } else if (strtolower($sort_type) == "desc") {
+                        $this->sort_type = "DESC";
+                    }
+                } else {
+                    $this->sort_type = "ASC";
+                }
+                $sort_set = true;
+            }
+            if (isset($rows)) {
+                $this->rows = $rows;
+                $rows_set = true;
+            }
+            
+            if ($columns_set) {
+                $this->query .= " ".$this->columns." FROM ".$this->table;
+                if ($condition_set) {
+                    $this->query .= " WHERE ".$this->condition;
+                }
+                if ($sort_set) {
+                    $this->query .= " ORDER BY ".$this->sort." ".$this->sort_type;
+                }
+                if ($rows_set) {
+                    $this->query .= " LIMIT ".$this->rows;
+                }
+                $this->query .= ";";
+                $this->connect->query($this->query);
+                return $this->connect->single();
+            }
+        }
 
         public function insert($columns = null, $values = array()) {
             $this->query = "INSERT INTO ".$this->table." (";
@@ -206,6 +256,13 @@ namespace db_cn {
                 $this->query .= ");";
                 $this->connect->query($this->query);
                 $this->connect->execute();
+            }
+        }
+        
+        public function rawQuery($query) {
+            if (isset($query)) {
+                $this->connect->query($query);
+                return $this->connect->resultset();
             }
         }
 

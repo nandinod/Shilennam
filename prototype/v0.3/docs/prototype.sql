@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2015 at 10:21 AM
+-- Generation Time: Apr 22, 2015 at 01:22 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -44,15 +44,23 @@ CREATE TABLE IF NOT EXISTS `companies` (
 
 CREATE TABLE IF NOT EXISTS `finance` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `year` varchar(50) COLLATE utf8_bin NOT NULL,
-  `month` varchar(2) COLLATE utf8_bin NOT NULL,
-  `day` varchar(3) COLLATE utf8_bin NOT NULL,
+  `year` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `month` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `day` varchar(3) COLLATE utf8_bin DEFAULT NULL,
   `name` varchar(100) COLLATE utf8_bin DEFAULT NULL,
-  `donation` double DEFAULT NULL,
+  `debt` double DEFAULT NULL,
   `remaining` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `finance`
+--
+
+INSERT INTO `finance` (`id`, `year`, `month`, `day`, `name`, `debt`, `remaining`) VALUES
+(1, '2008', '7', '23', 'МУНН', 0, 0),
+(2, '2008', '7', '29', 'Эрх Чөлөөг Хэрэгжүүлэгч нам', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -72,7 +80,15 @@ CREATE TABLE IF NOT EXISTS `financial_list` (
   KEY `FKfinancial_933223` (`outcomeid`),
   KEY `FKfinancial_205934` (`partyid`),
   KEY `FKfinancial_980628` (`financeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `financial_list`
+--
+
+INSERT INTO `financial_list` (`id`, `financeid`, `partyid`, `outcomeid`, `incomeid`) VALUES
+(1, 1, 5, 1, 1),
+(2, 2, 14, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -82,14 +98,22 @@ CREATE TABLE IF NOT EXISTS `financial_list` (
 
 CREATE TABLE IF NOT EXISTS `income` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
-  `from_inside` double NOT NULL,
-  `from_people` double NOT NULL,
-  `other_parties` double NOT NULL,
-  `other` double NOT NULL,
+  `from_inside` double DEFAULT NULL,
+  `from_people` double DEFAULT NULL,
+  `other_parties` double DEFAULT NULL,
+  `other` double DEFAULT NULL,
   `total` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `income`
+--
+
+INSERT INTO `income` (`id`, `from_inside`, `from_people`, `other_parties`, `other`, `total`) VALUES
+(1, 19000, 11578.1, 0, 0, 30578.1),
+(2, 1500, 3005, 0, 0, 4505);
 
 -- --------------------------------------------------------
 
@@ -99,19 +123,27 @@ CREATE TABLE IF NOT EXISTS `income` (
 
 CREATE TABLE IF NOT EXISTS `outcome` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
-  `presentation` double NOT NULL,
-  `advertisement` double NOT NULL,
-  `management` double NOT NULL,
-  `employee_salary` double NOT NULL,
-  `chancery` double NOT NULL,
-  `mail_and_shipping` double NOT NULL,
-  `transportation` double NOT NULL,
-  `assignment` double NOT NULL,
-  `other` double NOT NULL,
+  `presentation` double DEFAULT NULL,
+  `advertisement` double DEFAULT NULL,
+  `management` double DEFAULT NULL,
+  `employee_salary` double DEFAULT NULL,
+  `chancery` double DEFAULT NULL,
+  `mail_and_shipping` double DEFAULT NULL,
+  `transportation` double DEFAULT NULL,
+  `assignment` double DEFAULT NULL,
+  `other` double DEFAULT NULL,
   `total` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `outcome`
+--
+
+INSERT INTO `outcome` (`id`, `presentation`, `advertisement`, `management`, `employee_salary`, `chancery`, `mail_and_shipping`, `transportation`, `assignment`, `other`, `total`) VALUES
+(1, 20846.3, 0, 0, 1000, 0, 1762.5, 6150, 0, 819, 30578.1),
+(2, 70, 1762.94, 0, 2366.46, 0, 85, 140, 75.6, 0, 4500);
 
 -- --------------------------------------------------------
 

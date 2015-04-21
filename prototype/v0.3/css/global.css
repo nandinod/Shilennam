@@ -1,3 +1,11 @@
+body {
+	margin-bottom: 0px;
+}
+
+.col-center{
+  margin:0 auto;
+}
+
 /* Create a medium height at 40px */
 .navbar-md {min-height:40px}
 .navbar-md .navbar-brand,
@@ -161,6 +169,8 @@ blockquote > footer {
 }
 .row-gov-party > .container > h3 {
 	margin: 30px 0px;
+}
+.row-gov-party > .container > h3 > a {
 	color: #1F294C;
 }
 .row-gov-party > .container > .row > .col-sm-3 > .well img {
@@ -253,6 +263,7 @@ blockquote > footer {
 
 .footer {
 	background-color: #242E51;
+	height: 80px;
 }
 .footer > .container {
 	text-align: center;

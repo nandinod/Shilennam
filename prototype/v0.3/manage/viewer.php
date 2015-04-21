@@ -105,7 +105,7 @@
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingOne">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
 				          Parties
 				        </a>
 				      </h4>
@@ -147,18 +147,44 @@
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingTwo">
 				      <h4 class="panel-title">
-				        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				          Testing new database connection
+				        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+				          Economics of government parties
 				        </a>
 				      </h4>
 				    </div>
 				    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 				      <div class="panel-body">
-				      	<?php
-				      		
-				      		$party = new db_cn\Table("party");
-				      		echo "<pre>", print_r($party->select()), "</pre>";
-				      	?>
+				      	<table class="table table-bordered">
+				      		<tr>
+				      			<th>Улс төрийн нам</th>
+				      			<th>Нийт санхүүжилт</th>
+				      			<th>Нийт үрэлт</th>
+				      			<th>Бэлэн байгаа</th>
+				      			<th>Өр зээл</th>
+				      		</tr>
+					      	<?php
+					      		$finance = new db_cn\Table("finance");
+					      		$party = new db_cn\Table("party");
+					      		$income = new db_cn\Table("income");
+					      		$outcome = new db_cn\Table("outcome");
+					      		$list = new db_cn\Table("financial_list");
+					      		$result = $list->select("financeid,partyid,outcomeid,incomeid");
+					      		foreach ($result as $res) {
+					      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
+					      			$party_res =$party->selectFirst("title", "id = ".$res['partyid']);
+					      			$outcome_res = $party->selectFirst("*", "id = ".$res['outcomeid']);
+					      			$income_res = $party->selectFirst("*", "id = ".$res['incomeid']);
+
+					      			echo "<tr>";
+					      			echo "<td>".$party_res['title']."</td>";
+					      			echo "<td>".$income_res['total']."</td>";
+					      			echo "<td>".$outcome_res['total']."</td>";
+					      			echo "<td>".$finance_res['remaining']."</td>";
+					      			echo "<td>".$finance_res['debt']."</td>";
+					      			echo "</tr>";
+					      		}
+					      	?>
+				      	</table>
 				      </div>
 				    </div>
 				  </div>

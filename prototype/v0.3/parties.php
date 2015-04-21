@@ -22,6 +22,25 @@
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+
+	<style type="text/css">
+		.gov-party-lists {
+			background: url("../res/patt/swirl_pattern2.png") repeat;
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+		.gov-party-lists .gov-party-lists-item {
+			width: 100%;
+			background-color: #FAFAFA;
+		}
+		.gov-party-lists .gov-party-lists-item .party-img {
+			width: 35%;
+		}
+		.gov-party-lists .gov-party-lists-item .party-desc {
+			width: 60%;
+			margin-left: 5%;
+		}
+	</style>
 </head>
 <body>
 	
@@ -31,7 +50,7 @@
 				<div class="pull-left">
 					<a href="#" class="btn btn-sm">Тусламж</a>
 					<a href="#" class="btn btn-sm">Бидэнтэй холбогдох</a>
-					<a href="manage/index.php" class="btn btn-sm">Менежмент</a>
+					<a href="manage/" class="btn btn-sm">Менежмент</a>
 				</div>
 				<div class="pull-right">
 					<a href="https://www.facebook.com/pages/Shilennam/633649973430676" target="_blank" class="btn btn-sm"><img class='img-responsive' src="res/png/fb-white.png" alt="png"></a>
@@ -131,48 +150,49 @@
 		</div>
 	</header>
 
-	<div class="container">
-		
-			<div class="col-lg-6">
-				<div class="container well">
-					<div class="col-lg-2">
-						<img class="img-responsive align-center" src="res/party/democratic.png" alt="Democratic Party">
+	<div class="gov-party-lists">
+		<div class="container">
+			<div class="col-lg-12">
+				<div class="col-lg-8 col-lg-offset-2">
+					<?php
+						$party = new db_cn\Table("party");
+						$results = $party->select("title,acronym");
+		                foreach ($results as $res) { 
+					?>
+					<div class="gov-party-lists-item well well-md">
+						<div class="party-img pull-left">
+							<img src="res/party/democratic.png" alt="Neg Nam" class="img-responsive">
+						</div>
+						<div class="party-desc pull-left">
+							<h2><?php echo $res['title']; ?> <small>(<?php echo $res['acronym']; ?>)</small></h2>
+							<P><strong>Founded in 1987...</strong></P>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+								Consequatur vero, nihil nobis laboriosam, modi eos quisquam 
+								eius odit repellendus animi suscipit quis nulla voluptatem adipisci.!</p>
+						</div>
+						<div class="clearfix"></div>
+						<p class="text-right"><a href="">Continue reading...</a></p>
 					</div>
-					<div class="col-lg-4">
-						<h2>Title (Acronym)</h2>
-						<strong>Formed in 1987</strong>
-					</div>
+					<?php
+						}
+					?>
 				</div>
 			</div>
-
-			<div class="col-lg-6">
-				<div class="container well">
-					<div class="col-lg-2">
-						<img class="img-responsive align-center" src="res/party/democratic.png" alt="Democratic Party">
-					</div>
-					<div class="col-lg-4">
-						<h2>Title (Acronym)</h2>
-						<strong>Formed in 1987</strong>
-					</div>
-				</div>
-			</div>
-
+		</div>
 	</div>
 
-	<footer>
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<a href="index.html">ЭХЛЭЛ</a>
-					<a href="economics.html#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
-					<a href="news.html#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
-					<a href="#"><del>ХУУЛИАС</del></a>
-					<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
-					<a href="#"><del>ХОЛБООСУУД</del></a>
-				</div>
-				<div class="row">
-					<i>Copyright© 2015 . Шилэн Данс</i>
-				</div>
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<a href="index.html">ЭХЛЭЛ</a>
+				<a href="economics.html#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
+				<a href="news.html#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+				<a href="#"><del>ХУУЛИАС</del></a>
+				<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
+				<a href="#"><del>ХОЛБООСУУД</del></a>
+			</div>
+			<div class="row">
+				<i>Copyright© 2015 . Шилэн Данс</i>
 			</div>
 		</div>
 	</footer>

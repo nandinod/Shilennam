@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<?php
-		include 'backend/DB_CN.php';
-	?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +28,6 @@
 				<div class="pull-left">
 					<a href="#" class="btn btn-sm">Тусламж</a>
 					<a href="#" class="btn btn-sm">Бидэнтэй холбогдох</a>
-					<a href="manage/" class="btn btn-sm">Менежмент</a>
 				</div>
 				<div class="pull-right">
 					<a href="https://www.facebook.com/pages/Shilennam/633649973430676" target="_blank" class="btn btn-sm"><img class='img-responsive' src="res/png/fb-white.png" alt="png"></a>
@@ -131,126 +127,77 @@
 		</div>
 	</header>
 
-	<div class="row-gov-party">
-		<div class="container">
-			<h3 class="text-center"><a href="parties.php">Улс төрийн намууд</a></h3>
-			<div class="row">
-				<?php
-					$party = new db_cn\Table("party");
-					$results = $party->select("title", "1 limit 8");
-                    foreach ($results as $res) {     
-				?>
-				<div class="col-sm-3">
-					<div class="well well-md">
-						<img class="img-responsive align-center" src="res/party/democratic.png" alt="Democratic Party">
-						<h4><a href="#"><?php echo $res['title']; ?></a></h4>
+	<div class="content">
+		<div class="container article" id="article">
+			<div class="col-lg-9">
+				<header class="well well-sm">
+					<h3>Тэнгэрлэг сайхан ээжүүд баярын арга хэмжээ боллоо</h3>
+					<span>2015 оны 3-р сарын 8</span>
+					<img src="res/news/article1_img1.jpg" alt="Article 1">
+				</header>
+				<section class="well well-sm">
+					<p>Тэнгэрлэг сайхан ээжүүд баярын арга хэмжээ боллоо Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</section>
+				<footer>
+					
+				</footer>
+			</div>
+			<div class="col-lg-3">
+				<div class="panel panel-primary tweets">
+					<div class="panel-heading text-center">
+						<img src="res/png/twitter-white.png" alt="twitter" class="left-block">
+						<span>ХЭН ЮУ ГЭЖ ЖИРГЭВ?</span>	
+					</div>
+					<div class="panel-body">
+						<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/shilennam" data-widget-id="577928259876225024">Tweets by @shilennam</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 					</div>
 				</div>
-                <?php
-                    }
-                ?>
+				<div class="panel panel-default mini-poll">
+					<div class="panel-heading text-center">
+						<span>САНАЛ АСУУЛГА</span>
+					</div>
+					<div class="panel-body">
+						<h5 class="text-center"><b>Шилэн Нам: </b>Таны бодлоор улс төрийн намуудын санхүүжилт ил тод байх ёстой юу?</h5>
+						<form>
+							<div class="radio"><label><input type="radio" name="poll">Тийм</label></div>
+							<div class="radio"><label><input type="radio" name="poll">Үгүй</label></div>
+							<div class="radio"><label><input type="radio" name="poll">Чухал биш</label></div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="row-gov-party-eco">
-		<div class="container">
-			<h3 class="text-center">Намуудын санхүүжилт</h3>
-			<table class="table">
-				<tr>
-					<th>Улс төрийн намууд</th>
-					<th>Нийт санхүүжилт</th>
-					<th>Нийт үрэлт</th>
-					<th>Бэлэн байгаа</th>
-					<th>Өр зээл</th>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-
-	<div class="poll">
-		<div class="container">
-			<h3 class="text-center">Санал асуулга</h3>
-			<h5 class="text-center"><b>Шилэн Нам: </b>Таны бодлоор улс төрийн намуудын санхүүжилт ил тод байх ёстой юу?</h5>
-			<form>
-				<div class="radio"><label><input type="radio" name="poll">Тийм</label></div>
-				<div class="radio"><label><input type="radio" name="poll">Үгүй</label></div>
-				<div class="radio"><label><input type="radio" name="poll">Чухал биш</label></div>
-			</form>
-		</div>
-	</div>
-
-	<div class="contact">
-		<div class="container">
-			<div class="col-lg-4">
-				<h3 class="text-center">Холбоо барих</h3>
-			</div>
-			<div class="col-lg-8">
-				<form action="" class="form-horizontal">
-					<div class="form-group col-md-4">
-						<label for="firstname">НЭР:*</label><br/>
-						<input type="text" id="firstname">
-					</div>
-					<div class="form-group col-md-4">
-						<label for="email">И-МЭЙЛ:*</label><br/>
-						<input type="text" id="email">
-					</div>
-					<div class="form-group col-md-8">
-						<label for="message">МЭССЭЖ:*</label>
-						<textarea class="form-control" rows="5" id="message"></textarea>
-					</div>
-					<div class="form-group col-md-8">
-						<button type="submit" class="btn btn-default">ИЛГЭЭХ</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<footer class="footer">
-		<div class="container">
-			<div class="row">
-				<a href="index.php">ЭХЛЭЛ</a>
-				<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
-				<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
-				<a href="#"><del>ХУУЛИАС</del></a>
-				<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
-				<a href="#"><del>ХОЛБООСУУД</del></a>
-			</div>
-			<div class="row">
-				<i>Copyright© 2015 . Шилэн Данс</i>
+	<footer>
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<a href="index.php">ЭХЛЭЛ</a>
+					<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
+					<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+					<a href="#"><del>ХУУЛИАС</del></a>
+					<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
+					<a href="#"><del>ХОЛБООСУУД</del></a>
+				</div>
+				<div class="row">
+					<i>Copyright© 2015 . Шилэн Данс</i>
+				</div>
 			</div>
 		</div>
 	</footer>
-		
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
