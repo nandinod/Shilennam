@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php
-		require_once "../backend/init.php";	
+		include '../backend/DB_CN.php';
 	?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,9 +53,9 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Databases <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li class="active"><a href="diagrams.php">Diagrams</a></li>
+	            <li><a href="diagrams.php">Diagrams</a></li>
 	            <li><a href="editor.php">Table editor</a></li>
-	            <li><a href="viewer.php">Data viewer</a></li>
+	            <li class="active"><a href="viewer.php">Data viewer</a></li>
 	            <li><a href="priviligies.php">User priviligies</a></li>
 	          </ul>
 	        </li>
@@ -76,7 +76,7 @@
 
 	<div class="container">
 		<header class="header">
-			<h1 class="text-center">Diagrams</h1>
+			<h1 class="text-center">User Priviligies</h1>
 		</header>
 		<hr>
 		<div class="col-md-12">
@@ -88,13 +88,13 @@
 					<a href="index.php" class="list-group-item">
 						<span class="glyphicon glyphicon-book"></span> Instructions
 					</a>
-					<a href="diagrams.php" class="list-group-item active">
+					<a href="diagrams.php" class="list-group-item">
 						<span class="glyphicon glyphicon-list-alt"></span> Diagrams
 					</a>
 					<a href="editor.php" class="list-group-item">
 						<span class="glyphicon glyphicon-pencil"></span> Table Editor
 					</a>
-					<a href="viewer.php" class="list-group-item">
+					<a href="viewer.php" class="list-group-item active">
 						<span class="glyphicon glyphicon-file"></span> Data Viewer
 					</a>
 					<a href="priviligies.php" class="list-group-item disabled">
@@ -103,17 +103,9 @@
 				</ul>
 			</div>
 			<div class="col-md-10">
-				<h3 class="text-left">Core Skeleton</h3>
-				<img src="../docs/diagrams/coreSkeleton.jpg" class="img-responsive">
-				<hr>
-				<h3 class="text-left">Objects in Diagram</h3>
-				<img src="../docs/diagrams/objectsInDiagram.jpg" class="img-responsive">
-				<hr>
-				<h3 class="text-left">Main Database</h3>
-				<img src="../docs/diagrams/mainDatabaseCompleted.jpg" class="img-responsive">
-			</div>			
+
+			</div>
 		</div>
 	</div>
-
 </body>
 </html>

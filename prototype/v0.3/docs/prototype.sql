@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2015 at 01:22 AM
+-- Generation Time: Apr 22, 2015 at 10:49 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -27,14 +27,28 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `companies` (
-  `index_id` int(100) NOT NULL,
+  `index_id` int(100) NOT NULL AUTO_INCREMENT,
   `id` int(100) NOT NULL,
   `company` varchar(250) COLLATE utf8_bin NOT NULL,
   `reg_code` int(100) DEFAULT NULL,
   `sector_code` varchar(150) COLLATE utf8_bin DEFAULT NULL,
   `sector_name` varchar(150) COLLATE utf8_bin DEFAULT NULL,
-  `org` varchar(250) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `org` varchar(250) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`index_id`),
+  KEY `index_id` (`index_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`index_id`, `id`, `company`, `reg_code`, `sector_code`, `sector_name`, `org`) VALUES
+(1, 258, '4 хараа ХХК', NULL, NULL, NULL, NULL),
+(2, 413, '5 толгой нисэх буудал ХХК', NULL, NULL, 'агаарын тээвэр', '9'),
+(3, 228, 'CBXZ ХХК', NULL, NULL, NULL, NULL),
+(4, 36, 'Get center ХХК', NULL, NULL, NULL, NULL),
+(5, 205, 'Жи мобайл ХХК', NULL, 'J6120', 'Утасгүй холбоо', '9'),
+(6, 259, 'GSMM нөхөрлөл', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

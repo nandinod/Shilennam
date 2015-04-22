@@ -155,44 +155,40 @@
 
 	<div class="row-gov-party-eco">
 		<div class="container">
-			<h3 class="text-center">Намуудын санхүүжилт</h3>
-			<table class="table">
-				<tr>
-					<th>Улс төрийн намууд</th>
-					<th>Нийт санхүүжилт</th>
-					<th>Нийт үрэлт</th>
-					<th>Бэлэн байгаа</th>
-					<th>Өр зээл</th>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-				<tr>
-					<td>Ардчилсан нам</td>
-					<td>$854,966,964</td>
-					<td>$806,551,525</td>
-					<td>$21,556,921</td>
-					<td>$39,831,475</td>
-				</tr>
-			</table>
+			<h3 class="text-center"><a href="economics.php#eco">Намуудын санхүүжилт</a></h3>
+			<div class="table-responsive">
+				<table class="table">
+		      		<tr>
+		      			<th>Улс төрийн нам</th>
+		      			<th>Нийт санхүүжилт</th>
+		      			<th>Нийт үрэлт</th>
+		      			<th>Бэлэн байгаа</th>
+		      			<th>Өр зээл</th>
+		      		</tr>
+			      	<?php
+			      		$finance = new db_cn\Table("finance");
+			      		$party = new db_cn\Table("party");
+			      		$income = new db_cn\Table("income");
+			      		$outcome = new db_cn\Table("outcome");
+			      		$list = new db_cn\Table("financial_list");
+			      		$result = $list->select("financeid,partyid,outcomeid,incomeid");
+			      		foreach ($result as $res) {
+			      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
+			      			$party_res =$party->selectFirst("title,acronym", "id = ".$res['partyid']);
+			      			$outcome_res = $outcome->selectFirst("total", "id = ".$res['outcomeid']);
+			      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
+
+			      			echo "<tr>";
+			      			echo "<td title='".$party_res['acronym']."'><a href='#'>".$party_res['title']."</a></td>";
+			      			echo "<td>$".$income_res['total']."</td>";
+			      			echo "<td>$".$outcome_res['total']."</td>";
+			      			echo "<td>$".$finance_res['remaining']."</td>";
+			      			echo "<td>$".$finance_res['debt']."</td>";
+			      			echo "</tr>";
+			      		}
+			      	?>
+		      	</table>
+			</div>
 		</div>
 	</div>
 

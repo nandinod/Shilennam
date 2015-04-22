@@ -83,6 +83,9 @@
         <div class="col-md-12">
             <div class="col-md-2">
                 <ul class="list-group">
+                    <a href="#" class="list-group-item" id="collapse_side_menu" data-parent="editor_side_menu">
+                        <span class="glyphicon glyphicon-menu-left"></span> Collapse menu
+                    </a>
                     <a href="index.php" class="list-group-item active">
                         <span class="glyphicon glyphicon-book"></span> Instructions
                     </a>

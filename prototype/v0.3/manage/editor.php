@@ -81,7 +81,10 @@
 		<hr>
 		<div class="col-md-12">
 			<div class="col-md-2">
-				<ul class="list-group">
+				<ul class="list-group" id="editor_side_menu">
+					<a href="#" class="list-group-item" id="collapse_side_menu" data-parent="editor_side_menu">
+						<span class="glyphicon glyphicon-menu-left"></span> Collapse menu
+					</a>
 					<a href="index.php" class="list-group-item">
 						<span class="glyphicon glyphicon-book"></span> Instructions
 					</a>
@@ -100,19 +103,21 @@
 				</ul>
 			</div>
 			<div class="col-md-10">
-				
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselect="true">
-					<div class="panel panel-default">
-						<div class="panel-heading" role="tab" id="panel-party-heading">
-							<h4 class="panel-title">
-							<a href="#panel-party-collapse" data-toggle="collapse" data-parent="#accordion" aria-expanded="true" aria-control="panel-party-collapse">
-								Party
-							</a>
-							</h4>
-						</div>
-						<div id="panel-party-collapse" class="panel-collapse collapse-in" role="tabpanel" aria-labelledby="panel-party-heading">
-							<div class="panel-body">
-								<ul class="nav nav-tabs nav-justified">	
+
+				<div class="panel-group editor-group" id="accordion" role="tablist" aria-multiselectable="false">
+
+					<!-- Editing of party begins here... -->
+				  	<div class="panel panel-default">
+				    	<div class="panel-heading" role="tab" id="edit-party-heading" data-toggle="collapse" data-parent="#accordion" data-target="#edit-party-collapse" aria-expanded="false" aria-controls="edit-party-collapse">
+					      	<h4 class="panel-title">
+					        	<a href="#edit-party-collapse" >
+					          	Party
+					        	</a>
+					      	</h4>
+				    	</div>
+					    <div id="edit-party-collapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="edit-party-heading">
+					    	<div class="panel-body">
+					    		<ul class="nav nav-tabs nav-justified">	
 									<li role="presentation" class="active">
 										<a href="#edit_party" data-toggle="tab">Edit Record</a>
 									</li>
@@ -123,15 +128,14 @@
 								<div class="tab-content">
 									<div id="edit_party" class="tab-pane fade in active">
 										<?php
-											$db = new db_cn\Connector();
-											$db->query("select id, code, title, acronym from party");
-											$rows = $db->resultset();
+											$party = new db_cn\Table("party");
+											$rows = $party->select("id,code,title,acronym");
 										?>
 										<h4 class="text-danger text-center">
 											<span class="glyphicon glyphicon-warning-sign"></span> Be sure to verify the data that you are editing!
 										</h4>
 										<div class="table-responsive">
-											<table class="table table-striped table-bordered">
+											<table class="table table-hover">
 												<tr>
 													<th>Code</th>
 													<th>Title</th>
@@ -181,58 +185,379 @@
 											</div>
 										</form>
 									</div>
-
-									
-									<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									  <div class="modal-dialog">
-									    <div class="modal-content">
-									   	  <form action="">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										        <h4 class="modal-title" id="myModalLabel">Edit Record</h4>
-										      </div>
-										      <div class="modal-body" id="edit_output">
-										       	<div class="form-group">
-										       		<label for="edit_party_code">Code : </label>
-										       		<div class="input-group">
-										       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
-										       			<input type="text" id="edit_party_code" class="form-control" readonly="true">	
-										       		</div>
-										       	</div>
-										       	<div class="form-group">
-										       		<label for="edit_party_title">Title : </label>
-										       		<div class="input-group">
-										       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
-										       			<input type="text" id="edit_party_title" class="form-control" readonly="true">
-										       		</div>
-										       	</div>
-										       	<div class="form-group">
-										       		<label for="edit_party_acronym">Acronym : </label>
-										       		<div class="input-group">
-										       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
-										       			<input type="text" id="edit_party_acronym" class="form-control" readonly="true">
-										       		</div>
-										       	</div>
-										       	<div id="editor_test">
-										       		
-										       	</div>
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										        <input type="submit" class="btn btn-primary" value="Save Changes">
-										      </div>
-									      </form>
-									    </div>
-									  </div>
-									</div>
-
-
 								</div>
-							</div>
-						</div>
+								<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  	<div class="modal-dialog">
+								    	<div class="modal-content">
+								   	  		<form action="">
+										      	<div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Edit Record</h4>
+										      	</div>
+										      	<div class="modal-body" id="edit_output">
+											       	<div class="form-group">
+											       		<label for="edit_party_code">Code : </label>
+											       		<div class="input-group">
+											       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
+											       			<input type="text" id="edit_party_code" class="form-control" readonly="true">	
+											       		</div>
+											       	</div>
+											       	<div class="form-group">
+											       		<label for="edit_party_title">Title : </label>
+											       		<div class="input-group">
+											       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
+											       			<input type="text" id="edit_party_title" class="form-control" readonly="true">
+											       		</div>
+											       	</div>
+											       	<div class="form-group">
+											       		<label for="edit_party_acronym">Acronym : </label>
+											       		<div class="input-group">
+											       			<span class="input-group-addon btn btn-warning party_edit_valid" data-toggle="button" aria-pressed="false" autocomplete="off">Edit</span>
+											       			<input type="text" id="edit_party_acronym" class="form-control" readonly="true">
+											       		</div>
+											       	</div>
+											       	<div id="editor_test">
+											       		
+											       	</div>
+										      	</div>
+										      	<div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <input type="submit" class="btn btn-primary" value="Save Changes">
+										      	</div>
+								      		</form>
+								    	</div>
+								  	</div>
+								</div>
+					      	</div>
+					    </div>
 					</div>
+					<!-- Editing of party ends here! -->
+
+					<!-- Editing of party economics starts here... -->
+				  	<div class="panel panel-default">
+				    	<div class="panel-heading" role="tab" id="edit-party-economics-heading" data-toggle="collapse" data-parent="#accordion" data-target="#edit-party-economics-collapse" aria-expanded="false" aria-controls="edit-party-economics-collapse">
+					      	<h4 class="panel-title">
+					        	<a href="#edit-party-economics-collapse">
+					          	Party Economics
+					        	</a>
+					      	</h4>
+				    	</div>
+				    	<div id="edit-party-economics-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="edit-party-economics-heading">
+				      		<div class="panel-body">
+
+				      			<?php
+				      				$finance_list = new db_cn\Table("financial_list");
+				      				$finance = new db_cn\Table("finance");
+						      		$party = new db_cn\Table("party");
+						      		$income = new db_cn\Table("income");
+						      		$outcome = new db_cn\Table("outcome");
+						      		$companies = new db_cn\Table("companies");
+				      			?>
+								
+								<ul class="nav nav-tabs">
+									<li class="active"><a data-toggle="tab" href="#edit-party-economics-tab-summary">Summary</a></li>
+									<li><a data-toggle="tab" href="#edit-party-economics-tab-finance">Finance</a></li>
+									<li><a data-toggle="tab" href="#edit-party-economics-tab-income">Income</a></li>
+									<li><a data-toggle="tab" href="#edit-party-economics-tab-outcome">Outcome</a></li>
+								</ul>
+								<div class="tab-content">
+									<div id="edit-party-economics-tab-summary" class="tab-pane fade in active">
+										<div class="table-responsive">
+											<table class="table table-condensed table-striped table-bordered">
+												<tr>
+									      			<th>Улс төрийн нам</th>
+									      			<th>Нийт санхүүжилт</th>
+									      			<th>Нийт үрэлт</th>
+									      			<th>Бэлэн байгаа</th>
+									      			<th>Өр зээл</th>
+									      		</tr>
+												<?php
+													$result = $finance_list->select("financeid,partyid,outcomeid,incomeid");
+										      		foreach ($result as $res) {
+										      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
+										      			$party_res =$party->selectFirst("title", "id = ".$res['partyid']);
+										      			$outcome_res = $outcome->selectFirst("total", "id = ".$res['outcomeid']);
+										      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
+
+										      			echo "<tr>";
+										      			echo "<td>$".$party_res['title']."</td>";
+										      			echo "<td>$".$income_res['total']."</td>";
+										      			echo "<td>$".$outcome_res['total']."</td>";
+										      			echo "<td>$".$finance_res['remaining']."</td>";
+										      			echo "<td>$".$finance_res['debt']."</td>";
+										      			echo "</tr>";
+										      		}
+												?>
+											</table>
+										</div>
+									</div>
+									<div id="edit-party-economics-tab-finance" class="tab-pane fade in">
+										<div class="table-responsive">
+											<table class="table table-condensed table-striped table-bordered">
+												<tr>
+									      			<th>ID</th>
+									      			<th>Date</th>
+									      			<th>Name</th>
+									      			<th>Debt</th>
+									      			<th>Remaining</th>
+									      			<th></th>
+									      		</tr>
+												<?php
+													$result = $finance->select("*");
+										      		foreach ($result as $res) {
+										      			echo "<tr>";
+										      			echo "<td>".$res['id']."</td>";
+										      			echo "<td>".$res['day']."/".$res['month']."/".$res['year']."</td>";
+										      			echo "<td>".$res['name']."</td>";
+										      			echo "<td>$".$res['debt']."</td>";
+										      			echo "<td>$".$res['remaining']."</td>";
+										      			echo "<td class='text-center'>
+															<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
+															<span class='glyphicon glyphicon-pencil'></span>
+															</button>
+															<button type='button' class='btn btn-default'>
+															<span class='glyphicon glyphicon-trash disabled'></span>
+															</button>
+															</td>";
+										      			echo "</tr>";
+										      		}
+												?>
+											</table>
+										</div>
+										<div class="add_button">
+											<button type="button" data-target="add_finance_modal" class="btn btn-primary pull-right disabled">Add finance record</button>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div id="edit-party-economics-tab-income" class="tab-pane fade in">
+										<div class="table-responsive">
+											<table class="table table-condensed table-striped table-bordered">
+												<tr>
+									      			<th>ID</th>
+									      			<th>From inside</th>
+									      			<th>From people</th>
+									      			<th>Other parties</th>
+									      			<th>Other</th>
+									      			<th>Total</th>
+									      			<th></th>
+									      		</tr>
+												<?php
+													$result = $income->select("*");
+										      		foreach ($result as $res) {
+										      			echo "<tr>";
+										      			echo "<td>".$res['id']."</td>";
+										      			echo "<td>$".$res['from_inside']."</td>";
+										      			echo "<td>$".$res['from_people']."</td>";
+										      			echo "<td>$".$res['other_parties']."</td>";
+										      			echo "<td>$".$res['other']."</td>";
+										      			echo "<td>$".$res['total']."</td>";
+										      			echo "<td class='text-center'>
+														<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
+														<span class='glyphicon glyphicon-pencil'></span>
+														</button>
+														<button type='button' class='btn btn-default'>
+														<span class='glyphicon glyphicon-trash disabled'></span>
+														</button>
+														</td>";
+										      			echo "</tr>";
+										      		}
+												?>
+											</table>
+										</div>
+										<div class="add_button">
+											<button type="button" data-target="add_income_modal" class="btn btn-primary pull-right disabled">Add income record</button>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div id="edit-party-economics-tab-outcome" class="tab-pane fade in">
+										<div class="table-responsive">
+											<table class="table table-condensed table-striped table-bordered">
+												<tr>
+									      			<th>ID</th>
+									      			<th>Presentation</th>
+									      			<th>Advertisement</th>
+									      			<th>Management</th>
+									      			<th>Employee Salary</th>
+									      			<th>Chancery</th>
+									      			<th>Mail & Shipping</th>
+									      			<th>Transportation</th>
+									      			<th>Assignment</th>
+									      			<th>Other</th>
+									      			<th>Total</th>
+									      			<th></th>
+									      		</tr>
+												<?php
+													$result = $outcome->select("*");
+										      		foreach ($result as $res) {
+										      			echo "<tr>";
+										      			echo "<td>".$res['id']."</td>";
+										      			echo "<td>$".$res['presentation']."</td>";
+										      			echo "<td>$".$res['advertisement']."</td>";
+										      			echo "<td>$".$res['management']."</td>";
+										      			echo "<td>$".$res['employee_salary']."</td>";
+										      			echo "<td>$".$res['chancery']."</td>";
+										      			echo "<td>$".$res['mail_and_shipping']."</td>";
+										      			echo "<td>$".$res['transportation']."</td>";
+										      			echo "<td>$".$res['assignment']."</td>";
+										      			echo "<td>$".$res['other']."</td>";
+										      			echo "<td>$".$res['total']."</td>";
+										      			echo "<td class='text-center'>
+														<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
+														<span class='glyphicon glyphicon-pencil'></span>
+														</button>
+														<button type='button' class='btn btn-default'>
+														<span class='glyphicon glyphicon-trash'></span>
+														</button>
+														</td>";
+										      			echo "</tr>";
+										      		}
+												?>
+											</table>
+										</div>
+										<div class="add_button">
+											<button type="button" data-target="add_outcome_modal" class="btn btn-primary pull-right disabled">Add outcome record</button>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</div>
+								<div class="financial_list">
+									<div class="table-responsive">
+										<table class="table table-hover table-bordered table-condensed table-nonfluid">
+											<tr>
+								      			<th>Finance ID</th>
+								      			<th>Party ID</th>
+								      			<th>Outcome ID</th>
+								      			<th>Income ID</th>
+								      			<th>
+								      				<div class="add_button" style="margin: 0px;">
+														<button type="button" data-target="add_finance_modal" class="btn btn-primary pull-right disabled">Add New</button>
+														<div class="clearfix"></div>
+													</div>
+												</th>
+								      		</tr>
+											<?php
+												$result = $finance_list->select("id,financeid,partyid,outcomeid,incomeid");
+									      		foreach ($result as $res) {
+									      			echo "<tr>";
+									      			echo "<td>".$res['financeid']."</td>";
+									      			echo "<td>".$res['partyid']."</td>";
+									      			echo "<td>".$res['outcomeid']."</td>";
+									      			echo "<td>".$res['incomeid']."</td>";
+									      			echo "<td class='text-center'>
+															<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
+															<span class='glyphicon glyphicon-pencil'></span>
+															</button>
+															<button type='button' class='btn btn-default'>
+															<span class='glyphicon glyphicon-trash'></span>
+															</button>
+															</td>";
+									      			echo "</tr>";
+									      		}
+											?>
+										</table>
+									</div>
+								</div>
+									
+								<div class="modal fade" id="edit_finance_list_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  	<div class="modal-dialog">
+								    	<div class="modal-content">
+								   	  		<form action="">
+										      	<div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Edit Financial Lists</h4>
+										      	</div>
+										      	<div class="modal-body" id="edit_output">
+											       	
+										      	</div>
+										      	<div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <input type="submit" class="btn btn-primary" value="Save Changes">
+										      	</div>
+								      		</form>
+								    	</div>
+								  	</div>
+								</div>
+
+				      		</div>
+				    	</div>
+					</div>
+					<!-- Editing of party economics ends here! -->
+
+					<!-- Editing of companies starts here... -->
+					<div class="panel panel-default">
+				  		<div class="panel-heading" role="tab" id="edit-company-heading" data-toggle="collapse" data-target="#edit-company-collapse" data-parent="#accordion" aria-expanded="true" aria-controls="edit-company-collapse">
+				  			<h4 class="panel-title">
+				  				<a href="#collapseThree">
+				  					Companies
+				  				</a>
+				  			</h4>
+				  		</div>
+				  		<div id="edit-company-collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="edit-company-heading">
+				  			<?php
+				  				$result = $companies->select("*");
+				  			?>
+				  			<div class="panel-body">
+				  				<div class="table-responsive">
+					  				<table class="table table-bordered table-hover">
+						  				<tr>
+						  					<th>id</th>
+						  					<th>Company</th>
+						  					<th>Register Code</th>
+						  					<th>Sector Code</th>
+						  					<th>Sector Name</th>
+						  					<th>Org</th>
+						  					<th>
+												<button type="button" data-target="add_finance_modal" class="btn btn-primary text-center disabled">Add Company</button>
+						  					</th>
+						  				</tr>
+						  				<?php
+						  					foreach ($result as $res) {
+						  						echo "<tr>";
+								      			echo "<td>".$res['id']."</td>";
+								      			echo "<td>".$res['company']."</td>";
+								      			echo "<td>".$res['reg_code']."</td>";
+								      			echo "<td>".$res['sector_code']."</td>";
+								      			echo "<td>".$res['sector_name']."</td>";
+								      			echo "<td>".$res['org']."</td>";
+								      			echo "<td class='text-center'>
+													<button type='button' id='party_edit_".$res['index_id']."' class='btn btn-default' data-target='#edit_company_modal' data-toggle='modal'>
+													<span class='glyphicon glyphicon-pencil'></span>
+													</button>
+													<button type='button' class='btn btn-default'>
+													<span class='glyphicon glyphicon-trash'></span>
+													</button>
+													</td>";
+								      			echo "</tr>";
+						  					}
+						  				?>
+						  			</table>
+				  				</div>
+
+					  			<div class="modal fade" id="edit_company_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  	<div class="modal-dialog">
+								    	<div class="modal-content">
+								   	  		<form action="">
+										      	<div class="modal-header">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="myModalLabel">Edit Companies</h4>
+										      	</div>
+										      	<div class="modal-body" id="edit_output">
+											       	
+										      	</div>
+										      	<div class="modal-footer">
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        <input type="submit" class="btn btn-primary" value="Save Changes">
+										      	</div>
+								      		</form>
+								    	</div>
+								  	</div>
+								</div>
+				  			</div>
+				  		</div>
+				  	</div>
+					<!-- Editing of companies ends here! -->
+
 				</div>
-				
 			</div>
 		</div>
 	</div>

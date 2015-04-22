@@ -82,6 +82,9 @@
 		<div class="col-md-12">
 			<div class="col-md-2">
 				<ul class="list-group">
+					<a href="#" class="list-group-item" id="collapse_side_menu" data-parent="editor_side_menu">
+						<span class="glyphicon glyphicon-menu-left"></span> Collapse menu
+					</a>
 					<a href="index.php" class="list-group-item">
 						<span class="glyphicon glyphicon-book"></span> Instructions
 					</a>
@@ -102,94 +105,127 @@
 			<div class="col-md-10">
 
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-				  <div class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="headingOne">
-				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-				          Parties
-				        </a>
-				      </h4>
-				    </div>
-				    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-				      <div class="panel-body">
-				      	<?php
-							$db = new db_cn\Connector();
-							$db->query("select code, title, acronym from party");
-							$rows = $db->resultset();
-						?>
-				      	<h4>This record is of Mongolian Government parties</h4>
-							<p>
-								There are total of <?php echo $db->rowCount(); ?> parties recorded
-								on our database. This list is not static as you can add more government
-								party records into our database. If you want to insert a new record 
-								<a href="editor.php#insert_party">click here</a> to insert or <a href="editor.php#edit_party">edit</a>.
-							</p>
+				  	<div class="panel panel-default">
+				    	<div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+				      		<h4 class="panel-title">
+				        		<a href="#collapseOne">
+				          			Parties
+				        		</a>
+				      		</h4>
+				    	</div>
+				    	<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				      		<div class="panel-body">
+						      	<?php
+									$party = new db_cn\Table("party");
+									$rows = $party->select("id,code,title,acronym");
+								?>
+						      	<h4>This record is of Mongolian Government parties</h4>
+								<p>
+									There are total of <?php echo count($rows); ?> parties recorded
+									on our database. This list is not static as you can add more government
+									party records into our database. If you want to insert a new record 
+									<a href="editor.php#insert_party">click here</a> to insert or <a href="editor.php#edit_party">edit</a>.
+								</p>
+							</div>
+							<table class="table table-striped <?php if(count($rows)>12)echo'table-condensed';?>">
+								<tr>
+									<th>Code</th>
+									<th>Title</th>
+									<th>Acronym</th>
+								</tr>
+								<?php
+									foreach ($rows as $row) {
+										echo "<tr>";
+										echo "<td>".$row['code']."</td>";
+										echo "<td>".$row['title']."</td>";
+										echo "<td>".$row['acronym']."</td>";
+										echo "</tr>";
+									}
+								?>
+							</table>
 						</div>
-						<table class="table table-striped <?php if($db->rowCount()>12)echo'table-condensed';?>">
-							<tr>
-								<th>Code</th>
-								<th>Title</th>
-								<th>Acronym</th>
-							</tr>
-							<?php
-								foreach ($rows as $row) {
-									echo "<tr>";
-									echo "<td>".$row['code']."</td>";
-									echo "<td>".$row['title']."</td>";
-									echo "<td>".$row['acronym']."</td>";
-									echo "</tr>";
-								}
-							?>
-						</table>
-				      </div>
-				    </div>
-				  </div>
-				  <div class="panel panel-default">
-				    <div class="panel-heading" role="tab" id="headingTwo">
-				      <h4 class="panel-title">
-				        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-				          Economics of government parties
-				        </a>
-				      </h4>
-				    </div>
-				    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-				      <div class="panel-body">
-				      	<table class="table table-bordered">
-				      		<tr>
-				      			<th>Улс төрийн нам</th>
-				      			<th>Нийт санхүүжилт</th>
-				      			<th>Нийт үрэлт</th>
-				      			<th>Бэлэн байгаа</th>
-				      			<th>Өр зээл</th>
-				      		</tr>
-					      	<?php
-					      		$finance = new db_cn\Table("finance");
-					      		$party = new db_cn\Table("party");
-					      		$income = new db_cn\Table("income");
-					      		$outcome = new db_cn\Table("outcome");
-					      		$list = new db_cn\Table("financial_list");
-					      		$result = $list->select("financeid,partyid,outcomeid,incomeid");
-					      		foreach ($result as $res) {
-					      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
-					      			$party_res =$party->selectFirst("title", "id = ".$res['partyid']);
-					      			$outcome_res = $party->selectFirst("*", "id = ".$res['outcomeid']);
-					      			$income_res = $party->selectFirst("*", "id = ".$res['incomeid']);
+					</div>
+				  	<div class="panel panel-default">
+				  		<div class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" data-parent="#accordion" aria-expanded="true" aria-controls="collapseTwo">
+					      	<h4 class="panel-title">
+					        	<a href="#collapseTwo">
+					          	Economics of government parties
+					        	</a>
+					      	</h4>
+				    	</div>
+					    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+					    	<div class="panel-body">
+					      	
+					      	</div>
+					      	<table class="table table-striped <?php if(count($rows)>12)echo'table-condensed';?>">
+					      		<tr>
+					      			<th>Улс төрийн нам</th>
+					      			<th>Нийт санхүүжилт</th>
+					      			<th>Нийт үрэлт</th>
+					      			<th>Бэлэн байгаа</th>
+					      			<th>Өр зээл</th>
+					      		</tr>
+						      	<?php
+						      		$finance = new db_cn\Table("finance");
+						      		$party = new db_cn\Table("party");
+						      		$income = new db_cn\Table("income");
+						      		$outcome = new db_cn\Table("outcome");
+						      		$list = new db_cn\Table("financial_list");
+						      		$companies = new db_cn\Table("companies");
+						      		$result = $list->select("financeid,partyid,outcomeid,incomeid");
+						      		foreach ($result as $res) {
+						      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
+						      			$party_res =$party->selectFirst("title", "id = ".$res['partyid']);
+						      			$outcome_res = $outcome->selectFirst("total", "id = ".$res['outcomeid']);
+						      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
 
-					      			echo "<tr>";
-					      			echo "<td>".$party_res['title']."</td>";
-					      			echo "<td>".$income_res['total']."</td>";
-					      			echo "<td>".$outcome_res['total']."</td>";
-					      			echo "<td>".$finance_res['remaining']."</td>";
-					      			echo "<td>".$finance_res['debt']."</td>";
-					      			echo "</tr>";
-					      		}
-					      	?>
-				      	</table>
-				      </div>
-				    </div>
-				  </div>
+						      			echo "<tr>";
+						      			echo "<td>$".$party_res['title']."</td>";
+						      			echo "<td>$".$income_res['total']."</td>";
+						      			echo "<td>$".$outcome_res['total']."</td>";
+						      			echo "<td>$".$finance_res['remaining']."</td>";
+						      			echo "<td>$".$finance_res['debt']."</td>";
+						      			echo "</tr>";
+						      		}
+						      	?>
+					      	</table>
+					    </div>
+				  	</div>
+				  	<div class="panel panel-default">
+				  		<div class="panel-heading" role="tab" id="headingThree" data-toggle="collapse" data-target="#collapseThree" data-parent="#accordion" aria-expanded="true" aria-controls="collapseThree">
+				  			<h4 class="panel-title">
+				  				<a href="#collapseThree">
+				  					Companies
+				  				</a>
+				  			</h4>
+				  		</div>
+				  		<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+				  			<?php
+				  				$result = $companies->select("id,company,sector_name");
+				  			?>
+				  			<div class="panel-body">
+
+				  			</div>
+				  			<table class="table table-striped">
+				  				<tr>
+				  					<th>id</th>
+				  					<th>Company</th>
+				  					<th>Sector Name</th>
+				  				</tr>
+				  				<?php
+				  					foreach ($result as $res) {
+				  						echo "<tr>";
+						      			echo "<td>".$res['id']."</td>";
+						      			echo "<td>".$res['company']."</td>";
+						      			echo "<td>".$res['sector_name']."</td>";
+						      			echo "</tr>";
+				  					}
+				  				?>
+				  			</table>
+				  		</div>
+				  	</div>
+
 				</div>
-
 			</div>
 		</div>
 	</div>

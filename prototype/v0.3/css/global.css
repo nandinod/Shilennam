@@ -3,7 +3,10 @@ body {
 }
 
 .col-center{
-  margin:0 auto;
+  	margin:0 auto;
+}
+.table-nonfluid {
+	width: auto !important;
 }
 
 /* Create a medium height at 40px */
@@ -188,44 +191,56 @@ blockquote > footer {
 }
 .row-gov-party-eco > .container > h3 {
 	margin: 30px 0px;
+}
+.row-gov-party-eco > .container > h3 > a {
 	color: #1F294C;
 }
-.content > .economics > .col-lg-9 #pane > .table {
+.content > .economics > .col-lg-9 #pane .table {
 	margin-top: 20px;
 }
-.row-gov-party-eco > .container > .table tr,
-.content > .economics > .col-lg-9 #pane > .table tr {
-	background-color: #E7E8EA;
+.row-gov-party-eco > .container .table-responsive,
+.content > .economics > .col-lg-9 #pane .table .table-responsive {
+	padding: 4px 4px 4px 4px;
 }
-.row-gov-party-eco > .container > .table tr:first-child,
-.content > .economics > .col-lg-9 #pane > .table tr:first-child {
+.row-gov-party-eco > .container .table,
+.content > .economics > .col-lg-9 #pane .table {
+	border-collapse: collapse;
+	border:1px solid lightgray;
+	border-top: none;
+}
+.row-gov-party-eco > .container .table tr,
+.content > .economics > .col-lg-9 #pane .table tr {
+	background-color: #F5F5F5;
+}
+.row-gov-party-eco > .container .table tr:first-child,
+.content > .economics > .col-lg-9 #pane .table tr:first-child {
 	background-color: #4174B6;
 }
-.row-gov-party-eco > .container > .table th,
-.content > .economics > .col-lg-9 #pane > .table th {
+.row-gov-party-eco > .container .table th,
+.content > .economics > .col-lg-9 #pane .table th {
 	color: #fff;
 	font-weight: bold;
 	text-align: center;
 	font-size: 18px;
 }
-.row-gov-party-eco > .container > .table th:first-child,
-.content > .economics > .col-lg-9 #pane > .table th:first-child {
+.row-gov-party-eco > .container .table th:first-child,
+.content > .economics > .col-lg-9 #pane .table th:first-child {
 	padding-left: 50px;
-	text-align: left;
+	text-align: center;
 }
-.row-gov-party-eco > .container > .table td,
-.content > .economics > .col-lg-9 #pane > .table td {
+.row-gov-party-eco > .container .table td,
+.content > .economics > .col-lg-9 #pane .table td {
 	font-weight: 100;
 	color: #4174B6;
 	text-align: center;
-	border-color: #fff;
 }
-.row-gov-party-eco > .container > .table td:first-child,
-.content > .economics > .col-lg-9 #pane > .table td:first-child {
+.row-gov-party-eco > .container .table td:first-child,
+.content > .economics > .col-lg-9 #pane .table td:first-child {
 	color: #292E42;
 	padding-left: 50px;
 	text-align: left;
-	font-size: 18px;
+	font-size: 14px;
+	font-weight: bold;
 }
 
 .poll {
@@ -375,3 +390,6 @@ blockquote > footer {
 	color: #4174B6;
 }
 
+#accordion .panel-heading {
+	cursor: pointer;
+}
