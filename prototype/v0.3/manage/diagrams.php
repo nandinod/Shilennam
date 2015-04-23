@@ -104,13 +104,13 @@
 			</div>
 			<div class="col-md-10">
 				<h3 class="text-left">Core Skeleton</h3>
-				<img src="../docs/diagrams/coreSkeleton.jpg" class="img-responsive">
+				<img src="diagrams/coreSkeleton.JPG" class="img-responsive">
 				<hr>
 				<h3 class="text-left">Objects in Diagram</h3>
-				<img src="../docs/diagrams/objectsInDiagram.jpg" class="img-responsive">
+				<img src="diagrams/objectsInDiagram.JPG" class="img-responsive">
 				<hr>
 				<h3 class="text-left">Main Database</h3>
-				<img src="../docs/diagrams/mainDatabaseCompleted.jpg" class="img-responsive">
+				<img src="diagrams/mainDatabaseCompleted.JPG" class="img-responsive">
 			</div>			
 		</div>
 	</div>

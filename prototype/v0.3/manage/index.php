@@ -124,7 +124,7 @@
                         </p>
                     </div>
                     <div class="panel-footer">
-                        Click here to download <a href="#"><span class="glyphicon glyphicon-download-alt"></span> Manuals</a>
+                        Click here to download <a href="#" class="del"><del><span class="glyphicon glyphicon-download-alt"></span> Manuals</del></a>
                     </div>
                 </div>
                 <div class="panel panel-default">

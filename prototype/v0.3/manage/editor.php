@@ -152,7 +152,7 @@
 														<button type='button' id='party_edit_".$row['id']."' class='btn btn-default' data-target='#edit_modal' data-toggle='modal'>
 														<span class='glyphicon glyphicon-pencil'></span>
 														</button>
-														<button type='button' class='btn btn-default'>
+														<button type='button' class='btn btn-default disabled'>
 														<span class='glyphicon glyphicon-trash'></span>
 														</button>
 														</td>";
@@ -222,7 +222,7 @@
 										      	</div>
 										      	<div class="modal-footer">
 											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											        <input type="submit" class="btn btn-primary" value="Save Changes">
+											        <input type="submit" class="btn btn-primary disabled" value="Save Changes">
 										      	</div>
 								      		</form>
 								    	</div>
@@ -280,7 +280,7 @@
 										      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
 
 										      			echo "<tr>";
-										      			echo "<td>$".$party_res['title']."</td>";
+										      			echo "<td>".$party_res['title']."</td>";
 										      			echo "<td>$".$income_res['total']."</td>";
 										      			echo "<td>$".$outcome_res['total']."</td>";
 										      			echo "<td>$".$finance_res['remaining']."</td>";
@@ -315,8 +315,8 @@
 															<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
 															<span class='glyphicon glyphicon-pencil'></span>
 															</button>
-															<button type='button' class='btn btn-default'>
-															<span class='glyphicon glyphicon-trash disabled'></span>
+															<button type='button' class='btn btn-default disabled'>
+															<span class='glyphicon glyphicon-trash'></span>
 															</button>
 															</td>";
 										      			echo "</tr>";
@@ -355,8 +355,8 @@
 														<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
 														<span class='glyphicon glyphicon-pencil'></span>
 														</button>
-														<button type='button' class='btn btn-default'>
-														<span class='glyphicon glyphicon-trash disabled'></span>
+														<button type='button' class='btn btn-default disabled'>
+														<span class='glyphicon glyphicon-trash'></span>
 														</button>
 														</td>";
 										      			echo "</tr>";
@@ -405,7 +405,7 @@
 														<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
 														<span class='glyphicon glyphicon-pencil'></span>
 														</button>
-														<button type='button' class='btn btn-default'>
+														<button type='button' class='btn btn-default disabled'>
 														<span class='glyphicon glyphicon-trash'></span>
 														</button>
 														</td>";
@@ -447,7 +447,7 @@
 															<button type='button' id='party_edit_".$res['id']."' class='btn btn-default' data-target='#edit_finance_list_modal' data-toggle='modal'>
 															<span class='glyphicon glyphicon-pencil'></span>
 															</button>
-															<button type='button' class='btn btn-default'>
+															<button type='button' class='btn btn-default disabled'>
 															<span class='glyphicon glyphicon-trash'></span>
 															</button>
 															</td>";
@@ -471,7 +471,7 @@
 										      	</div>
 										      	<div class="modal-footer">
 											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											        <input type="submit" class="btn btn-primary" value="Save Changes">
+											        <input type="submit" class="btn btn-primary disabled" value="Save Changes">
 										      	</div>
 								      		</form>
 								    	</div>
@@ -523,7 +523,7 @@
 													<button type='button' id='party_edit_".$res['index_id']."' class='btn btn-default' data-target='#edit_company_modal' data-toggle='modal'>
 													<span class='glyphicon glyphicon-pencil'></span>
 													</button>
-													<button type='button' class='btn btn-default'>
+													<button type='button' class='btn btn-default disabled'>
 													<span class='glyphicon glyphicon-trash'></span>
 													</button>
 													</td>";
@@ -546,7 +546,7 @@
 										      	</div>
 										      	<div class="modal-footer">
 											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-											        <input type="submit" class="btn btn-primary" value="Save Changes">
+											        <input type="submit" class="btn btn-primary disabled" value="Save Changes">
 										      	</div>
 								      		</form>
 								    	</div>

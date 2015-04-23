@@ -10,10 +10,10 @@ namespace db_cn {
 
     class Connector {
 
-        private $host = "shilennam.mn";
-        private $user = "shilecnv_p_dev";
-        private $pass = "prototypedev";
-        private $dbname = "shilecnv_prototype";
+        private $host = "localhost";
+        private $user = "root";
+        private $pass = "acep123";
+        private $dbname = "prototype";
         private $dbh;
         private $error;
         private $stmt;

@@ -237,6 +237,7 @@
 				<a href="index.php">ЭХЛЭЛ</a>
 				<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
 				<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+				<a href="manage/">МЕНЕЖМЕНТ</a>
 				<a href="#"><del>ХУУЛИАС</del></a>
 				<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
 				<a href="#"><del>ХОЛБООСУУД</del></a>

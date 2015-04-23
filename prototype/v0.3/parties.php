@@ -187,6 +187,7 @@
 				<a href="index.html">ЭХЛЭЛ</a>
 				<a href="economics.html#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
 				<a href="news.html#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+				<a href="manage/">МЕНЕЖМЕНТ</a>
 				<a href="#"><del>ХУУЛИАС</del></a>
 				<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
 				<a href="#"><del>ХОЛБООСУУД</del></a>

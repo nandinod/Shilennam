@@ -180,7 +180,7 @@
 						      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
 
 						      			echo "<tr>";
-						      			echo "<td>$".$party_res['title']."</td>";
+						      			echo "<td>".$party_res['title']."</td>";
 						      			echo "<td>$".$income_res['total']."</td>";
 						      			echo "<td>$".$outcome_res['total']."</td>";
 						      			echo "<td>$".$finance_res['remaining']."</td>";

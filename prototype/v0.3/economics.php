@@ -31,6 +31,7 @@
 				<div class="pull-left">
 					<a href="#" class="btn btn-sm">Тусламж</a>
 					<a href="#" class="btn btn-sm">Бидэнтэй холбогдох</a>
+					<a href="manage/" class="btn btn-sm">Менежмент</a>
 				</div>
 				<div class="pull-right">
 					<a href="https://www.facebook.com/pages/Shilennam/633649973430676" target="_blank" class="btn btn-sm"><img class='img-responsive' src="res/png/fb-white.png" alt="png"></a>
@@ -137,7 +138,7 @@
 	<div class="content">
 		<div class="container economics" id="eco">
 			<div class="col-lg-9 well well-sm">
-				<ul class="nav nav-tabs">
+				<!-- <ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#pane">Нэмэлт</a></li>
 					<li class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#">Нэмэлтүүд
@@ -151,9 +152,23 @@
 							<li><a data-toggle="tab" href="#pane5">Нэмэлт 5</a></li>
 						</ul>
 					</li>
+				</ul> -->
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#party-economics-tab-summary">Summary</a></li>
+					<li><a data-toggle="tab" href="#party-economics-tab-finance">Finance</a></li>
+					<li><a data-toggle="tab" href="#party-economics-tab-income">Income</a></li>
+					<li><a data-toggle="tab" href="#party-economics-tab-outcome">Outcome</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="pane" class="tab-pane fade in active">
+					<?php
+	      				$finance_list = new db_cn\Table("financial_list");
+	      				$finance = new db_cn\Table("finance");
+			      		$party = new db_cn\Table("party");
+			      		$income = new db_cn\Table("income");
+			      		$outcome = new db_cn\Table("outcome");
+			      		$companies = new db_cn\Table("companies");
+	      			?>
+					<div id="party-economics-tab-summary" class="tab-pane fade in active">
 						<p>
 							Where does all that money come from? For the answers, view our money profiles for both major parties and for each 
 							of their main fundraising committees. Select a party committee, then use the tabs above to view its information.
@@ -167,55 +182,127 @@
 								<li role="presentation"><a role="menuitem" href="#">2012</a></li>
 							</ul>
 						</div>
+						
 						<div class="table-responsive">
-							<table class="table">
-					      		<tr>
+							<table class="table table-condensed table-striped table-bordered">
+								<tr>
 					      			<th>Улс төрийн нам</th>
 					      			<th>Нийт санхүүжилт</th>
 					      			<th>Нийт үрэлт</th>
 					      			<th>Бэлэн байгаа</th>
 					      			<th>Өр зээл</th>
 					      		</tr>
-						      	<?php
-						      		$finance = new db_cn\Table("finance");
-						      		$party = new db_cn\Table("party");
-						      		$income = new db_cn\Table("income");
-						      		$outcome = new db_cn\Table("outcome");
-						      		$list = new db_cn\Table("financial_list");
-						      		$result = $list->select("financeid,partyid,outcomeid,incomeid");
+								<?php
+									$result = $finance_list->select("financeid,partyid,outcomeid,incomeid");
 						      		foreach ($result as $res) {
 						      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
-						      			$party_res =$party->selectFirst("title,acronym", "id = ".$res['partyid']);
+						      			$party_res =$party->selectFirst("title", "id = ".$res['partyid']);
 						      			$outcome_res = $outcome->selectFirst("total", "id = ".$res['outcomeid']);
 						      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
 
 						      			echo "<tr>";
-						      			echo "<td title='".$party_res['acronym']."'><a href='#'>".$party_res['title']."</a></td>";
+						      			echo "<td>".$party_res['title']."</td>";
 						      			echo "<td>$".$income_res['total']."</td>";
 						      			echo "<td>$".$outcome_res['total']."</td>";
 						      			echo "<td>$".$finance_res['remaining']."</td>";
 						      			echo "<td>$".$finance_res['debt']."</td>";
 						      			echo "</tr>";
 						      		}
-						      	?>
-					      	</table>
+								?>
+							</table>
+						</div>
+
+					</div>
+					
+					<div id="party-economics-tab-finance" class="tab-pane fade in">
+						<div class="table-responsive">
+							<table class="table table-condensed table-striped table-bordered">
+								<tr>
+					      			<th>ID</th>
+					      			<th>Date</th>
+					      			<th>Name</th>
+					      			<th>Debt</th>
+					      			<th>Remaining</th>
+					      		</tr>
+								<?php
+									$result = $finance->select("*");
+						      		foreach ($result as $res) {
+						      			echo "<tr>";
+						      			echo "<td>".$res['id']."</td>";
+						      			echo "<td>".$res['day']."/".$res['month']."/".$res['year']."</td>";
+						      			echo "<td>".$res['name']."</td>";
+						      			echo "<td>$".$res['debt']."</td>";
+						      			echo "<td>$".$res['remaining']."</td>";
+						      			echo "</tr>";
+						      		}
+								?>
+							</table>
 						</div>
 					</div>
-					<div id="pane1" class="tab-pane fade in">
-						pane 1
+					<div id="party-economics-tab-income" class="tab-pane fade in">
+						<div class="table-responsive">
+							<table class="table table-condensed table-striped table-bordered">
+								<tr>
+					      			<th>ID</th>
+					      			<th>From inside</th>
+					      			<th>From people</th>
+					      			<th>Other parties</th>
+					      			<th>Other</th>
+					      			<th>Total</th>					      		</tr>
+								<?php
+									$result = $income->select("*");
+						      		foreach ($result as $res) {
+						      			echo "<tr>";
+						      			echo "<td>".$res['id']."</td>";
+						      			echo "<td>$".$res['from_inside']."</td>";
+						      			echo "<td>$".$res['from_people']."</td>";
+						      			echo "<td>$".$res['other_parties']."</td>";
+						      			echo "<td>$".$res['other']."</td>";
+						      			echo "<td>$".$res['total']."</td>";
+						      			echo "</tr>";
+						      		}
+								?>
+							</table>
+						</div>
 					</div>
-					<div id="pane2" class="tab-pane fade in">
-						pane 2
+					<div id="party-economics-tab-outcome" class="tab-pane fade in">
+						<div class="table-responsive">
+							<table class="table table-condensed table-striped table-bordered">
+								<tr>
+					      			<th>ID</th>
+					      			<th>Presentation</th>
+					      			<th>Advertisement</th>
+					      			<th>Management</th>
+					      			<th>Employee Salary</th>
+					      			<th>Chancery</th>
+					      			<th>Mail & Shipping</th>
+					      			<th>Transportation</th>
+					      			<th>Assignment</th>
+					      			<th>Other</th>
+					      			<th>Total</th>
+					      		</tr>
+								<?php
+									$result = $outcome->select("*");
+						      		foreach ($result as $res) {
+						      			echo "<tr>";
+						      			echo "<td>".$res['id']."</td>";
+						      			echo "<td>$".$res['presentation']."</td>";
+						      			echo "<td>$".$res['advertisement']."</td>";
+						      			echo "<td>$".$res['management']."</td>";
+						      			echo "<td>$".$res['employee_salary']."</td>";
+						      			echo "<td>$".$res['chancery']."</td>";
+						      			echo "<td>$".$res['mail_and_shipping']."</td>";
+						      			echo "<td>$".$res['transportation']."</td>";
+						      			echo "<td>$".$res['assignment']."</td>";
+						      			echo "<td>$".$res['other']."</td>";
+						      			echo "<td>$".$res['total']."</td>";
+						      			echo "</tr>";
+						      		}
+								?>
+							</table>
+						</div>
 					</div>
-					<div id="pane3" class="tab-pane fade in">
-						pane 3
-					</div>
-					<div id="pane4" class="tab-pane fade in">
-						pane 4
-					</div>
-					<div id="pane5" class="tab-pane fade in">
-						pane 5
-					</div>
+
 				</div>
 			</div>
 			<div class="col-lg-3">
@@ -264,6 +351,7 @@
 					<a href="index.php">ЭХЛЭЛ</a>
 					<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
 					<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+					<a href="manage/">МЕНЕЖМЕНТ</a>
 					<a href="#"><del>ХУУЛИАС</del></a>
 					<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
 					<a href="#"><del>ХОЛБООСУУД</del></a>

@@ -28,6 +28,7 @@
 				<div class="pull-left">
 					<a href="#" class="btn btn-sm">Тусламж</a>
 					<a href="#" class="btn btn-sm">Бидэнтэй холбогдох</a>
+					<a href="manage/" class="btn btn-sm">Менежмент</a>
 				</div>
 				<div class="pull-right">
 					<a href="https://www.facebook.com/pages/Shilennam/633649973430676" target="_blank" class="btn btn-sm"><img class='img-responsive' src="res/png/fb-white.png" alt="png"></a>
@@ -199,6 +200,7 @@
 					<a href="index.php">ЭХЛЭЛ</a>
 					<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
 					<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+					<a href="manage/">МЕНЕЖМЕНТ</a>
 					<a href="#"><del>ХУУЛИАС</del></a>
 					<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
 					<a href="#"><del>ХОЛБООСУУД</del></a>

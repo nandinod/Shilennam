@@ -1,6 +1,6 @@
 <?php
 // Starting Session for all pages
-session_start();
+//session_start();
 
 // Making sure that there are no visible errors
 // error_reporting(1);
