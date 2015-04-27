@@ -57,8 +57,8 @@
 									<li><a href="#">БУСАД</a></li>
 								</ul>
 							</li>
-							<li><a href="#">МЭДЭЭ МЭДЭЭЛЭЛ</a></li>
-							<li><a href="#">ХУУЛИАС</a></li>
+							<li><a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a></li>
+							<li><a href="laws.php#laws">ХУУЛИАС</a></li>
 							<li><a href="#">УЛС ТӨРЧДИЙН ХАМААРАЛ</a></li>
 							<li><a href="#">ХОЛБООСУУД</a></li>
 						</ul>
@@ -181,21 +181,19 @@
 		</div>
 	</div>
 
-	<footer>
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<a href="index.php">ЭХЛЭЛ</a>
-					<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
-					<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
-					<a href="manage/">МЕНЕЖМЕНТ</a>
-					<a href="#"><del>ХУУЛИАС</del></a>
-					<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
-					<a href="#"><del>ХОЛБООСУУД</del></a>
-				</div>
-				<div class="row">
-					<i>Copyright© 2015 . Шилэн Данс</i>
-				</div>
+	<footer class="footer navbar navbar-fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<a href="index.php">ЭХЛЭЛ</a>
+				<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
+				<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+				<a href="manage/">МЕНЕЖМЕНТ</a>
+				<a href="laws.php#laws">ХУУЛИАС</a>
+				<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
+				<a href="#"><del>ХОЛБООСУУД</del></a>
+			</div>
+			<div class="row">
+				<i>Copyright© 2015 . Шилэн Данс</i>
 			</div>
 		</div>
 	</footer>

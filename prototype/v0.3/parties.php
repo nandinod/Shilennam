@@ -79,8 +79,8 @@
 									<li><a href="#">БУСАД</a></li>
 								</ul>
 							</li>
-							<li><a href="#">МЭДЭЭ МЭДЭЭЛЭЛ</a></li>
-							<li><a href="#">ХУУЛИАС</a></li>
+							<li><a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a></li>
+							<li><a href="laws.php#laws">ХУУЛИАС</a></li>
 							<li><a href="#">УЛС ТӨРЧДИЙН ХАМААРАЛ</a></li>
 							<li><a href="#">ХОЛБООСУУД</a></li>
 						</ul>
@@ -153,7 +153,7 @@
 	<div class="gov-party-lists">
 		<div class="container">
 			<div class="col-lg-12">
-				<div class="col-lg-8 col-lg-offset-2">
+				<div class="col-lg-8">
 					<?php
 						$party = new db_cn\Table("party");
 						$results = $party->select("title,acronym");
@@ -181,14 +181,14 @@
 		</div>
 	</div>
 
-	<footer class="footer">
+	<footer class="footer navbar navbar-fixed-bottom">
 		<div class="container">
 			<div class="row">
-				<a href="index.html">ЭХЛЭЛ</a>
-				<a href="economics.html#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
-				<a href="news.html#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+				<a href="index.php">ЭХЛЭЛ</a>
+				<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
+				<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
 				<a href="manage/">МЕНЕЖМЕНТ</a>
-				<a href="#"><del>ХУУЛИАС</del></a>
+				<a href="laws.php#laws">ХУУЛИАС</a>
 				<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
 				<a href="#"><del>ХОЛБООСУУД</del></a>
 			</div>

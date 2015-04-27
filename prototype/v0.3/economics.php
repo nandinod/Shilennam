@@ -60,8 +60,8 @@
 									<li><a href="#">БУСАД</a></li>
 								</ul>
 							</li>
-							<li><a href="#">МЭДЭЭ МЭДЭЭЛЭЛ</a></li>
-							<li><a href="#">ХУУЛИАС</a></li>
+							<li><a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a></li>
+							<li><a href="laws.php#laws">ХУУЛИАС</a></li>
 							<li><a href="#">УЛС ТӨРЧДИЙН ХАМААРАЛ</a></li>
 							<li><a href="#">ХОЛБООСУУД</a></li>
 						</ul>
@@ -161,7 +161,7 @@
 				</ul>
 				<div class="tab-content">
 					<?php
-	      				$finance_list = new db_cn\Table("financial_list");
+	      				$party_finance_list = new db_cn\Table("party_financial_list");
 	      				$finance = new db_cn\Table("finance");
 			      		$party = new db_cn\Table("party");
 			      		$income = new db_cn\Table("income");
@@ -184,28 +184,28 @@
 						</div>
 						
 						<div class="table-responsive">
-							<table class="table table-condensed table-striped table-bordered">
+							<table class="table table-condensed table-striped table-bordered table-hover" align="left">
 								<tr>
-					      			<th>Улс төрийн нам</th>
-					      			<th>Нийт санхүүжилт</th>
-					      			<th>Нийт үрэлт</th>
-					      			<th>Бэлэн байгаа</th>
-					      			<th>Өр зээл</th>
+					      			<th><a href='parties.php?'>Улс төрийн нам</a></th>
+					      			<th><a href='economics.php#eco?'>Нийт санхүүжилт</a></th>
+					      			<th><a href='economics.php#eco?'>Нийт үрэлт</a></th>
+					      			<th><a href='economics.php#eco?'>Бэлэн байгаа</a></th>
+					      			<th><a href='economics.php#eco?'>Өр зээл</a></th>
 					      		</tr>
 								<?php
-									$result = $finance_list->select("financeid,partyid,outcomeid,incomeid");
+									$result = $party_finance_list->select("financeid,partyid,outcomeid,incomeid");
 						      		foreach ($result as $res) {
 						      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
-						      			$party_res =$party->selectFirst("title", "id = ".$res['partyid']);
+						      			$party_res =$party->selectFirst("id, title, acronym", "id = ".$res['partyid']);
 						      			$outcome_res = $outcome->selectFirst("total", "id = ".$res['outcomeid']);
 						      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
 
 						      			echo "<tr>";
-						      			echo "<td>".$party_res['title']."</td>";
-						      			echo "<td>$".$income_res['total']."</td>";
-						      			echo "<td>$".$outcome_res['total']."</td>";
-						      			echo "<td>$".$finance_res['remaining']."</td>";
-						      			echo "<td>$".$finance_res['debt']."</td>";
+						      			echo "<td title='".$party_res['acronym']."'><a href='party.php?p_id=".$party_res['id']."'>".$party_res['title']."</a></td>";
+						      			echo "<td>".$income_res['total']."</td>";
+						      			echo "<td>".$outcome_res['total']."</td>";
+						      			echo "<td>".$finance_res['remaining']."</td>";
+						      			echo "<td>".$finance_res['debt']."</td>";
 						      			echo "</tr>";
 						      		}
 								?>
@@ -216,9 +216,8 @@
 					
 					<div id="party-economics-tab-finance" class="tab-pane fade in">
 						<div class="table-responsive">
-							<table class="table table-condensed table-striped table-bordered">
+							<table class="table table-condensed table-bordered table-hover">
 								<tr>
-					      			<th>ID</th>
 					      			<th>Date</th>
 					      			<th>Name</th>
 					      			<th>Debt</th>
@@ -228,11 +227,10 @@
 									$result = $finance->select("*");
 						      		foreach ($result as $res) {
 						      			echo "<tr>";
-						      			echo "<td>".$res['id']."</td>";
 						      			echo "<td>".$res['day']."/".$res['month']."/".$res['year']."</td>";
 						      			echo "<td>".$res['name']."</td>";
-						      			echo "<td>$".$res['debt']."</td>";
-						      			echo "<td>$".$res['remaining']."</td>";
+						      			echo "<td>".$res['debt']."</td>";
+						      			echo "<td>".$res['remaining']."</td>";
 						      			echo "</tr>";
 						      		}
 								?>
@@ -243,7 +241,6 @@
 						<div class="table-responsive">
 							<table class="table table-condensed table-striped table-bordered">
 								<tr>
-					      			<th>ID</th>
 					      			<th>From inside</th>
 					      			<th>From people</th>
 					      			<th>Other parties</th>
@@ -253,12 +250,11 @@
 									$result = $income->select("*");
 						      		foreach ($result as $res) {
 						      			echo "<tr>";
-						      			echo "<td>".$res['id']."</td>";
-						      			echo "<td>$".$res['from_inside']."</td>";
-						      			echo "<td>$".$res['from_people']."</td>";
-						      			echo "<td>$".$res['other_parties']."</td>";
-						      			echo "<td>$".$res['other']."</td>";
-						      			echo "<td>$".$res['total']."</td>";
+						      			echo "<td>".$res['from_inside']."</td>";
+						      			echo "<td>".$res['from_people']."</td>";
+						      			echo "<td>".$res['other_parties']."</td>";
+						      			echo "<td>".$res['other']."</td>";
+						      			echo "<td>".$res['total']."</td>";
 						      			echo "</tr>";
 						      		}
 								?>
@@ -267,9 +263,8 @@
 					</div>
 					<div id="party-economics-tab-outcome" class="tab-pane fade in">
 						<div class="table-responsive">
-							<table class="table table-condensed table-striped table-bordered">
+							<table class="table table-condensed table-striped table-hover">
 								<tr>
-					      			<th>ID</th>
 					      			<th>Presentation</th>
 					      			<th>Advertisement</th>
 					      			<th>Management</th>
@@ -285,17 +280,16 @@
 									$result = $outcome->select("*");
 						      		foreach ($result as $res) {
 						      			echo "<tr>";
-						      			echo "<td>".$res['id']."</td>";
-						      			echo "<td>$".$res['presentation']."</td>";
-						      			echo "<td>$".$res['advertisement']."</td>";
-						      			echo "<td>$".$res['management']."</td>";
-						      			echo "<td>$".$res['employee_salary']."</td>";
-						      			echo "<td>$".$res['chancery']."</td>";
-						      			echo "<td>$".$res['mail_and_shipping']."</td>";
-						      			echo "<td>$".$res['transportation']."</td>";
-						      			echo "<td>$".$res['assignment']."</td>";
-						      			echo "<td>$".$res['other']."</td>";
-						      			echo "<td>$".$res['total']."</td>";
+						      			echo "<td>".$res['presentation']."</td>";
+						      			echo "<td>".$res['advertisement']."</td>";
+						      			echo "<td>".$res['management']."</td>";
+						      			echo "<td>".$res['employee_salary']."</td>";
+						      			echo "<td>".$res['chancery']."</td>";
+						      			echo "<td>".$res['mail_and_shipping']."</td>";
+						      			echo "<td>".$res['transportation']."</td>";
+						      			echo "<td>".$res['assignment']."</td>";
+						      			echo "<td>".$res['other']."</td>";
+						      			echo "<td>".$res['total']."</td>";
 						      			echo "</tr>";
 						      		}
 								?>
@@ -344,21 +338,19 @@
 		</div>
 	</div>
 
-	<footer>
-		<div class="footer">
-			<div class="container">
-				<div class="row">
-					<a href="index.php">ЭХЛЭЛ</a>
-					<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
-					<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
-					<a href="manage/">МЕНЕЖМЕНТ</a>
-					<a href="#"><del>ХУУЛИАС</del></a>
-					<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
-					<a href="#"><del>ХОЛБООСУУД</del></a>
-				</div>
-				<div class="row">
-					<i>Copyright© 2015 . Шилэн Данс</i>
-				</div>
+	<footer class="footer navbar navbar-fixed-bottom">
+		<div class="container">
+			<div class="row">
+				<a href="index.php">ЭХЛЭЛ</a>
+				<a href="economics.php#eco">НАМУУДЫН САНХҮҮЖИЛТ</a>
+				<a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a>
+				<a href="manage/">МЕНЕЖМЕНТ</a>
+				<a href="laws.php#laws">ХУУЛИАС</a>
+				<a href="#"><del>УЛС ТӨРӨГЧДИЙН ХАМААРАЛ</del></a>
+				<a href="#"><del>ХОЛБООСУУД</del></a>
+			</div>
+			<div class="row">
+				<i>Copyright© 2015 . Шилэн Данс</i>
 			</div>
 		</div>
 	</footer>

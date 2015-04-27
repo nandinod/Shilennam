@@ -1,5 +1,9 @@
+html {
+	position: relative;
+  	min-height: 100%;
+}
 body {
-	margin-bottom: 0px;
+	margin-bottom: 60px;
 }
 
 .col-center{
@@ -109,13 +113,27 @@ body {
   }
 }
 
-
-blockquote {
+#slide blockquote {
 	border-left: none;
 }
-blockquote > footer {
+#slide blockquote > footer {
 	color: #fff;
 	font-style: italic;
+}
+
+#laws {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+#laws blockquote { 
+	transition: border 0.5s;
+}
+#laws blockquote:hover {
+	border-color: gray;
+}
+
+#party {
+
 }
 
 .row-quick-link {
@@ -223,9 +241,12 @@ blockquote > footer {
 	text-align: center;
 	font-size: 18px;
 }
+.row-gov-party-eco > .container .table th a,
+.content > .economics > .col-lg-9 .tab-pane .table th a {
+	color: #fff;
+}
 .row-gov-party-eco > .container .table th:first-child,
 .content > .economics > .col-lg-9 .tab-pane .table th:first-child {
-	padding-left: 50px;
 	text-align: center;
 }
 .row-gov-party-eco > .container .table td,
@@ -236,9 +257,6 @@ blockquote > footer {
 }
 .row-gov-party-eco > .container .table td:first-child,
 .content > .economics > .col-lg-9 .tab-pane .table td:first-child {
-	color: #292E42;
-	padding-left: 50px;
-	text-align: left;
 	font-size: 14px;
 	font-weight: bold;
 }
@@ -278,12 +296,14 @@ blockquote > footer {
 
 .footer {
 	background-color: #242E51;
-	height: 80px;
+	height: 60px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 .footer > .container {
 	text-align: center;
 	padding-top: 5px;
-	padding-bottom: 30px;
 }
 .footer > .container > .row a,
 .footer > .container > .row i {
