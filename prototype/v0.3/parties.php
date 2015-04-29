@@ -22,25 +22,6 @@
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
-	<style type="text/css">
-		.gov-party-lists {
-			background: url("../res/patt/swirl_pattern2.png") repeat;
-			padding-top: 20px;
-			padding-bottom: 20px;
-		}
-		.gov-party-lists .gov-party-lists-item {
-			width: 100%;
-			background-color: #FAFAFA;
-		}
-		.gov-party-lists .gov-party-lists-item .party-img {
-			width: 35%;
-		}
-		.gov-party-lists .gov-party-lists-item .party-desc {
-			width: 60%;
-			margin-left: 5%;
-		}
-	</style>
 </head>
 <body>
 	
@@ -114,7 +95,6 @@
 							echo "<h3>".$law['source']."</h3>";
 							echo "<blockquote>".$law['text']."</blockquote>";
 						?>
-
 			      	</div>
 		      	</div>
 		      	<?php 
@@ -137,31 +117,35 @@
 
 	<div class="gov-party-lists">
 		<div class="container">
-			<div class="col-lg-12">
-				<div class="col-lg-8">
-					<?php
-						$party = new db_cn\Table("party");
-						$results = $party->select("title,acronym");
-		                foreach ($results as $res) { 
-					?>
-					<div class="gov-party-lists-item well well-md">
-						<div class="party-img pull-left">
-							<img src="res/party/democratic.png" alt="Neg Nam" class="img-responsive">
+			<div class="col-lg-12 party-lists">
+				
+				<?php
+					$party = new db_cn\Table("party");
+					$results = $party->select("id, title,acronym");
+	                foreach ($results as $res) { 
+				?>
+
+				<div class="col-lg-9 party-list-item">
+					<div class="party-list-item-container container-fluid well well-xs">
+						<div class="col-lg-6 party-list-item-img">
+							<img src="res/party/democratic.png" alt="" class="img-responsive">
 						</div>
-						<div class="party-desc pull-left">
-							<h2><?php echo $res['title']; ?> <small>(<?php echo $res['acronym']; ?>)</small></h2>
-							<P><strong>Founded in 1987...</strong></P>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-								Consequatur vero, nihil nobis laboriosam, modi eos quisquam 
-								eius odit repellendus animi suscipit quis nulla voluptatem adipisci.!</p>
+						<div class="col-lg-6 party-list-item-desc">
+							<h2 class="party-title"><?php echo $res['title']; ?> <small>(<?php echo $res['acronym']; ?>)</small></h2>
+							<hr>
+							<p class="party-date">2015.03.15</p>
+							<p class="party-description">Lorem ipsum dolor siicing elit. Quo incidunt deleniti at velit tempore ad nobis odio sint 
+								laboriosam asperiores molestias reprehenderit
+							</p>
+							<div class="party-read">
+								<a href="party.php?p_id=<?php echo $res['id'];?>" class="btn btn-default">Цааш унших</a>
+							</div>
 						</div>
-						<div class="clearfix"></div>
-						<p class="text-right"><a href="">Continue reading...</a></p>
 					</div>
-					<?php
-						}
-					?>
 				</div>
+				<?php
+					}
+				?>
 			</div>
 		</div>
 	</div>

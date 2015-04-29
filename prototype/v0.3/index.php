@@ -92,7 +92,7 @@
 							$laws = new db_cn\Table("laws");
 							$law = $laws->selectFirst("text,source", "id=".rand(1,25));
 							echo "<h3>".$law['source']."</h3>";
-							echo "<blockquote>".$law['text']."</blockquote>";
+							echo "<blockquote><a href='laws.php'>".$law['text']."</a></blockquote>";
 						?>
 
 			      	</div>

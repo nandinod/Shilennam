@@ -188,6 +188,7 @@ body {
 	text-shadow: 0px 0px 0px;
 }
 
+
 .row-gov-party {
 	background: url("../res/patt/swirl_pattern2.png") repeat;
 }
@@ -421,4 +422,95 @@ body {
 
 #accordion .panel-heading {
 	cursor: pointer;
+}
+
+
+
+.gov-party-lists {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #FAFAFA;
+}
+.gov-party-lists .party-lists .party-list-item {
+	padding: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container {
+	padding: 0px;
+	border: none;
+	box-shadow: 0px 0px 8px #CED4DB;
+	background-color: white;
+	border-radius: 15px;
+	margin: 0px;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .party-list-item-img {
+	padding: 70px;
+	background-color: #F6F6F7;
+	box-shadow: 2px 0px 3px #CCCCCC;
+	height: 100%;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .party-list-item-desc {
+	padding: 0px 25px;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .row .panel-body {
+	padding: 0px !important;
+	margin: 0px;
+	height: 100%;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .row {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container hr {
+	border: none;
+	height: 1px;
+    padding: 0px;
+    margin: 0px;
+    background: -moz-linear-gradient(left,rgba(110,110,110,0.50) 30%, rgba(0,0,0,0) 90%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, color-stop(30%,rgba(110,110,110,0.50)), color-stop(90%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, rgba(110,110,110,0.50) 30%,rgba(0,0,0,0) 90%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left, rgba(110,110,110,0.50) 30%,rgba(0,0,0,0) 90%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left, rgba(110,110,110,0.50) 30%,rgba(0,0,0,0) 90%,rgba(0,0,0,0) 100%); /* IE10+ */
+    background: linear-gradient(left, rgba(110,110,110,0.50) 30%,rgba(0,0,0,0) 90%,rgba(0,0,0,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .party-title {
+	height: auto;
+	min-height: 68px;
+	font-size: 37px;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .party-date {
+	text-align: right;
+	color: #A1A1A1;
+	font-size: 16px;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .party-description {
+	font-size: 16px;
+	min-height: 105px;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .party-read {
+	width: 100%;
+	height: auto;
+	margin: 0px;
+	position: relative;
+	padding: 0px;
+	text-align: right;
+	border: none;
+	margin-left: 25px;
+	margin-top: 35px;
+}
+.gov-party-lists .party-lists .party-list-item .party-list-item-container .party-read a {
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 0px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 0px;
+	border: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 18px;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 }
