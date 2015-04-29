@@ -265,6 +265,10 @@ namespace db_cn {
                 return $this->connect->resultset();
             }
         }
+        
+        public function debug() {
+            return $this->connect->debugDumpParams();
+        }
 
     }
 

@@ -80,43 +80,26 @@
 
 		    <!-- Wrapper for slides -->
 		    <div class="carousel-inner" role="listbox">
+				<?php
+					$for_once = false;
+					for ($a = 0; $a < 4; $a++) {
+						$random3 = rand(1, 3);
+				?>
+				<div class="item <?php if ($for_once == false) { echo "active"; $for_once = true; } ?>">
+			      	<img src="res/img/ub<?php echo $random3; ?>.jpg" alt="Steppe">
+			      	<div class="carousel-caption">
+						<?php
+							$laws = new db_cn\Table("laws");
+							$law = $laws->selectFirst("text,source", "id=".rand(1,25));
+							echo "<h3>".$law['source']."</h3>";
+							echo "<blockquote>".$law['text']."</blockquote>";
+						?>
 
-		      <div class="item active">
-		      	<img src="res/img/steppe2.jpg" alt="Steppe">
-		      	<div class="carousel-caption">
-		      		<h3>Something Something</h3>
-		      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci veritatis, tempora suscipit fugiat fugit nihil animi delectus, eum amet, dolorem laborum saepe eaque eius vero. Suscipit, illo quisquam facilis quibusdam.<br/><a href="#">Click Here</a> Now!</p>
-		      		<blockquote>
-				  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-						<footer>Someone <u>famous</u></footer>
-					</blockquote>
+			      	</div>
 		      	</div>
-		      </div>
-
-		      <div class="item">
-		      	<img src="res/img/ub-day2.jpg" alt="UB Day">
-		      	<div class="carousel-caption">
-		      		<h3>Ulaanbaatar Day</h3>
-		      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci veritatis, tempora suscipit fugiat fugit nihil animi delectus, eum amet, dolorem laborum saepe eaque eius vero. Suscipit, illo quisquam facilis quibusdam.<br/><a href="#">Click Here</a> Now!</p>
-		      		<blockquote>
-				  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-						<footer>Someone <u>famous</u></footer>
-					</blockquote>
-		      	</div>
-		      </div>
-
-		      <div class="item">
-		      	<img src="res/img/ub-night2.jpg" alt="UB Night">
-		      	<div class="carousel-caption">
-		      		<h3>Ulaanbaatar Night</h3>
-		      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci veritatis, tempora suscipit fugiat fugit nihil animi delectus, eum amet, dolorem laborum saepe eaque eius vero. Suscipit, illo quisquam facilis quibusdam.<br/><a href="#">Click Here</a> Now!</p>
-		      		<blockquote>
-				  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-						<footer>Someone <u>famous</u></footer>
-					</blockquote>
-		      	</div>
-		      </div>
-		  
+		      	<?php 
+		      		}
+		      	?>
 		    </div>
 
 		    <!-- Left and right controls -->
@@ -137,13 +120,13 @@
 			<div class="row">
 				<?php
 					$party = new db_cn\Table("party");
-					$results = $party->select("title", "1 limit 6");
+					$results = $party->select("id,title", "1 limit 6");
                     foreach ($results as $res) {     
 				?>
 				<div class="col-sm-2">
 					<div class="well well-md">
 						<img class="img-responsive align-center" src="res/party/democratic.png" alt="Democratic Party">
-						<h4 class='text-center'><a href="#"><?php echo $res['title']; ?></a></h4>
+						<h4 class='text-center'><a href="party.php?p_id=<?php echo $res['id']; ?>"><?php echo $res['title']; ?></a></h4>
 					</div>
 				</div>
                 <?php
@@ -153,44 +136,44 @@
 		</div>
 	</div>
 
-	<div class="row-gov-party-eco">
+	<!-- <div class="row-gov-party-eco">
 		<div class="container">
 			<h3 class="text-center"><a href="economics.php#eco">Намуудын санхүүжилт</a></h3>
 			<div class="table-responsive">
 				<table class="table">
 		      		<tr>
 		      			<th><a href='parties.php?'>Улс төрийн нам</a></th>
-		      			<th><a href='economics.php#eco?'>Нийт санхүүжилт</a></th>
-		      			<th><a href='economics.php#eco?'>Нийт үрэлт</a></th>
-		      			<th><a href='economics.php#eco?'>Бэлэн байгаа</a></th>
-		      			<th><a href='economics.php#eco?'>Өр зээл</a></th>
+		      			<th><a href='economics.php?year=2012#eco'>Нийт санхүүжилт</a></th>
+		      			<th><a href='economics.php?year=2012#eco'>Нийт үрэлт</a></th>
+		      			<th>Бэлэн байгаа</th>
+		      			<th>Өр зээл</th>
 		      		</tr>
 			      	<?php
-			      		$finance = new db_cn\Table("finance");
-			      		$party = new db_cn\Table("party");
-			      		$income = new db_cn\Table("income");
-			      		$outcome = new db_cn\Table("outcome");
-			      		$list = new db_cn\Table("party_financial_list");
-			      		$result = $list->select("financeid,partyid,outcomeid,incomeid");
-			      		foreach ($result as $res) {
-			      			$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
-			      			$party_res =$party->selectFirst("id, title,acronym", "id = ".$res['partyid']);
-			      			$outcome_res = $outcome->selectFirst("total", "id = ".$res['outcomeid']);
-			      			$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
+			      		// $finance = new db_cn\Table("finance");
+			      		// $party = new db_cn\Table("party");
+			      		// $income = new db_cn\Table("income");
+			      		// $outcome = new db_cn\Table("outcome");
+			      		// $list = new db_cn\Table("party_financial_list");
+			      		// $result = $list->select("financeid,partyid,outcomeid,incomeid");
+			      		// foreach ($result as $res) {
+			      		// 	$finance_res = $finance->selectFirst("debt,remaining", "id = ".$res['financeid']);
+			      		// 	$party_res =$party->selectFirst("id, title,acronym", "id = ".$res['partyid']);
+			      		// 	$outcome_res = $outcome->selectFirst("total", "id = ".$res['outcomeid']);
+			      		// 	$income_res = $income->selectFirst("total", "id = ".$res['incomeid']);
 
-			      			echo "<tr>";
-			      			echo "<td title='".$party_res['acronym']."'><a href='party.php?p_id=".$party_res['id']."'>".$party_res['title']."</a></td>";
-			      			echo "<td>".$income_res['total']."</td>";
-			      			echo "<td>".$outcome_res['total']."</td>";
-			      			echo "<td>".$finance_res['remaining']."</td>";
-			      			echo "<td>".$finance_res['debt']."</td>";
-			      			echo "</tr>";
-			      		}
+			      		// 	echo "<tr>";
+			      		// 	echo "<td title='".$party_res['acronym']."'><a href='party.php?p_id=".$party_res['id']."'>".$party_res['title']."</a></td>";
+			      		// 	echo "<td>".$income_res['total']."</td>";
+			      		// 	echo "<td>".$outcome_res['total']."</td>";
+			      		// 	echo "<td>".$finance_res['remaining']."</td>";
+			      		// 	echo "<td>".$finance_res['debt']."</td>";
+			      		// 	echo "</tr>";
+			      		// }
 			      	?>
 		      	</table>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="poll">
 		<div class="container">

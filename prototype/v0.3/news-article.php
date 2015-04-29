@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<?php
+		include 'backend/DB_CN.php';
+	?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,41 +81,26 @@
 		    <!-- Wrapper for slides -->
 		    <div class="carousel-inner" role="listbox">
 
-		      <div class="item active">
-		      	<img src="res/img/steppe2.jpg" alt="Steppe">
-		      	<div class="carousel-caption">
-		      		<h3>Something Something</h3>
-		      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci veritatis, tempora suscipit fugiat fugit nihil animi delectus, eum amet, dolorem laborum saepe eaque eius vero. Suscipit, illo quisquam facilis quibusdam.<br/><a href="#">Click Here</a> Now!</p>
-		      		<blockquote>
-				  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-						<footer>Someone <u>famous</u></footer>
-					</blockquote>
-		      	</div>
-		      </div>
+		      <?php
+					$for_once = false;
+					for ($a = 0; $a < 4; $a++) {
+						$random3 = rand(1, 3);
+				?>
+				<div class="item <?php if ($for_once == false) { echo "active"; $for_once = true; } ?>">
+			      	<img src="res/img/ub<?php echo $random3; ?>.jpg" alt="Steppe">
+			      	<div class="carousel-caption">
+						<?php
+							$laws = new db_cn\Table("laws");
+							$law = $laws->selectFirst("text,source", "id=".rand(1,25));
+							echo "<h3>".$law['source']."</h3>";
+							echo "<blockquote>".$law['text']."</blockquote>";
+						?>
 
-		      <div class="item">
-		      	<img src="res/img/ub-day2.jpg" alt="UB Day">
-		      	<div class="carousel-caption">
-		      		<h3>Ulaanbaatar Day</h3>
-		      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci veritatis, tempora suscipit fugiat fugit nihil animi delectus, eum amet, dolorem laborum saepe eaque eius vero. Suscipit, illo quisquam facilis quibusdam.<br/><a href="#">Click Here</a> Now!</p>
-		      		<blockquote>
-				  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-						<footer>Someone <u>famous</u></footer>
-					</blockquote>
+			      	</div>
 		      	</div>
-		      </div>
-
-		      <div class="item">
-		      	<img src="res/img/ub-night2.jpg" alt="UB Night">
-		      	<div class="carousel-caption">
-		      		<h3>Ulaanbaatar Night</h3>
-		      		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci veritatis, tempora suscipit fugiat fugit nihil animi delectus, eum amet, dolorem laborum saepe eaque eius vero. Suscipit, illo quisquam facilis quibusdam.<br/><a href="#">Click Here</a> Now!</p>
-		      		<blockquote>
-				  		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-						<footer>Someone <u>famous</u></footer>
-					</blockquote>
-		      	</div>
-		      </div>
+		      	<?php 
+		      		}
+		      	?>
 		  
 		    </div>
 
