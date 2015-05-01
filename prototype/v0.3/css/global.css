@@ -131,6 +131,9 @@ body {
 #laws blockquote:hover {
 	border-color: gray;
 }
+#laws ul {
+	list-style-type: none;
+}
 
 #party {
 
@@ -173,16 +176,33 @@ body {
 	text-align: left;
 }
 .carousel-inner > .item > .carousel-caption h3 {
-	margin-top: -20px;
+	margin-top: -40px;
 	font-size: 38px;
 	font-weight: bold;
-	text-shadow:1px 1px 4px #0D0D0D
+	text-shadow:1px 1px 4px #0D0D0D;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+.carousel-inner > .item > .carousel-caption blockquote {
+	padding: 15px;
+	background: rgba(60, 60, 60, 0.50);
+	border: 1px solid #787E94;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-top: 25px;
+}
+.carousel-inner > .item > .carousel-caption blockquote a {
+	color: #EDEDED;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+.carousel-inner > .item > .carousel-caption blockquote p {
+	text-shadow: none;
+	margin: 0px;
+	color: #EDEDED;
 }
 .carousel-inner > .item > .carousel-caption p {
 	margin-top: 40px;
-	font-size: 18px;
-	font-weight: bold;
-	text-shadow:1px 1px 4px #0D0D0D
+	text-shadow:1px 1px 4px #0D0D0D;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 }
 .carousel-inner > .item > .carousel-caption a {
 	text-shadow: 0px 0px 0px;

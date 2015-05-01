@@ -99,26 +99,28 @@
 
 		    <!-- Wrapper for slides -->
 		    <div class="carousel-inner" role="listbox">
-				<?php
-					$for_once = false;
-					for ($a = 0; $a < 4; $a++) {
-						$random3 = rand(1, 3);
-				?>
+			<?php
+				$for_once = false;
+				$laws = new db_cn\Table("laws");
+				$result = $laws->select("text,sanctions,source", "sanctions is not null");
+				for ($a = 0; $a < 4; $a++) {
+					$randomIndex = rand(0, sizeof($result)-1);
+					$random3 = rand(1, 3);
+			?>
 				<div class="item <?php if ($for_once == false) { echo "active"; $for_once = true; } ?>">
 			      	<img src="res/img/ub<?php echo $random3; ?>.jpg" alt="Steppe">
 			      	<div class="carousel-caption">
 						<?php
-							$laws = new db_cn\Table("laws");
-							$law = $laws->selectFirst("text,source", "id=".rand(1,25));
-							echo "<h3>".$law['source']."</h3>";
-							echo "<blockquote>".$law['text']."</blockquote>";
+							echo "<h3>".$result[$randomIndex]['source']."</h3>";
+							echo "<blockquote><a href='laws.php'>".$result[$randomIndex]['text']."</a></blockquote>";
+							echo "<blockquote><p>".$result[$randomIndex]['sanctions']."</p></blockquote>";
 						?>
 
 			      	</div>
 		      	</div>
-		      	<?php 
-		      		}
-		      	?>
+	      	<?php 
+	      		}
+	      	?>
 		    </div>
 
 		    <!-- Left and right controls -->
