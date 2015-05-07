@@ -143,7 +143,20 @@ body {
 	max-height: 500px;
 	overflow: auto;
 }
-
+#party .row {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+#party .party_logo {
+	outline: 1px solid lightgray;
+	padding: 15px;
+	text-align: center;
+}
+#party .party_logo img {
+	position: relative;
+	width: auto;
+	max-height: 200px;
+}
 
 .row-quick-link {
 	background-color: #242E51;
