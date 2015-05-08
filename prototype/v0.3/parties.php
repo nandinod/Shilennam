@@ -37,14 +37,14 @@
 				
 				<?php
 					$party = new db_cn\Table("party");
-					$results = $party->select("id, title,acronym");
+					$results = $party->select("id, title,acronym, logo_url");
 	                foreach ($results as $res) { 
 				?>
 
 				<div class="col-lg-9 party-list-item">
 					<div class="party-list-item-container container-fluid well well-xs">
 						<div class="col-lg-6 party-list-item-img">
-							<img src="res/party/democratic.png" alt="" class="img-responsive">
+							<img src="res/party/logos/<?php echo $res['logo_url']; ?>" alt="" class="img-responsive">
 						</div>
 						<div class="col-lg-6 party-list-item-desc">
 							<h2 class="party-title"><?php echo $res['title']; ?> <small>(<?php echo $res['acronym']; ?>)</small></h2>

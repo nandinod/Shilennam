@@ -61,7 +61,7 @@
 				$random3 = rand(1, 3);
 		?>
 			<div class="item <?php if ($for_once == false) { echo "active"; $for_once = true; } ?>">
-		      	<img src="res/img/ub<?php echo $random3; ?>.jpg" alt="Steppe">
+		      	<img src="res/img/ub<?php echo $random3; ?>.jpg" alt="Steppe" class="img-responsive">
 		      	<div class="carousel-caption">
 					<?php
 						echo "<h3>".$result[$randomIndex]['source']."</h3>";

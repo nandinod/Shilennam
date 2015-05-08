@@ -30,7 +30,6 @@
 			include "templates/header.php";
 		?>
 	</header>
-
 	
 	<!-- Party detailed information goes here! -->
 	<div class="container" id="party">
@@ -49,46 +48,95 @@
 					<h1>
 						Ардчилсан нам <small>(АН)</small>
 					</h1>
-					<h2>
-						Намын дарга: 
-					</h2>
-					<h4>
-						<a href="">www.demparty.mn</a>
-					</h4>
-
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-12">
-				<a href="#detailedInfo" data-toggle="collapse" class="btn btn-info">Дэлгэрэнгүй мэдээлэл харах</a>
+				<ul class="nav nav-pills" role="tablist">
+					<li role="presentation" class="active"><a href="#detailedInfo" aria-controls="detailedInfo" data-toggle="tab">Дэлгэрэнгүй мэдээлэл</a></li>
+					<li role="presentation"><a href="#partyEconomics" aria-controls="partyEconomics" data-toggle="tab">Намын санхүүжилт</a></li>
+				</ul>
 			</div>
 		</div>
-		<div class="row collapse in" id="detailedInfo">
-			<!-- Party social information goes here -->
-			<div class="col-md-6">
-				<div class="party_social">
-					<table class="table">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quo minima commodi, doloremque, sit, eum, esse porro doloribus vitae libero dolorem. Dignissimos quis tempora in corporis laboriosam et, sed non?
-					</table>
+		<div class="tab-content row">
+			<div class="tab-pane active" id="detailedInfo" role="tabpanel">
+				<!-- Party social information goes here -->
+				<div class="col-md-6">
+					<div class="party_social">
+						<table class="table table-hover">
+							<tr>
+								<th>Регистрийн дугаар</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Бүртгэлийн дугаар</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Намын дарга</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Гүшүүдийн тоо</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Хаяг</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Утас</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Факс</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Электрон шуудан</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Веб сайт</th>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<!-- Party founding information and law related goes here -->
+				<div class="col-md-6">
+					<div class="party-founding">
+						<table class="table table-hover">
+							<tr>
+								<th>Анх байгуулагдсан огноо</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Үүсгэн байгуулах баримт бичгийн тухай</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Улсын дээд шүүхэд бүртгүүлсэн огноо</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Улсын бүртгэлийн гэрчилгээ олгогдсон огноо</th>
+								<td></td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
-
-			<!-- Party founding information and law related goes here -->
-			<div class="col-md-6">
-				<div class="party-founding">
-					<table class="table">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates autem consectetur et aut facere at laudantium similique hic mollitia, ullam quibusdam. Architecto sequi nesciunt esse id necessitatibus, eaque aperiam reiciendis?
-					</table>
+			<div class="tab-pane" id="partyEconomics" role="tabpanel">
+				<div class="col-md-12">
+					
 				</div>
 			</div>
 		</div>
-
 	</div>
-
-
-
 
 	<footer class="footer navbar navbar-fixed-bottom">
 		<?php
