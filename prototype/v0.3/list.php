@@ -82,15 +82,16 @@
 						<?php
 							$party = new db_cn\Table("party");
 							$results = $party->select("id, title,acronym, logo_url");
+							shuffle($results);
 			                foreach ($results as $res) { 
 						?>
 
 						<div class="col-sm-12 party-list-item">
-							<div class="party-list-item-container container-fluid well well-xs">
-								<div class="col-sm-6 party-list-item-img">
+							<div class="party-list-item-container container-fluid well well-xs row fluid">
+								<div class="col-sm-6 party-list-item-img span2">
 									<img src="res/party/logos/<?php echo $res['logo_url']; ?>" alt="" class="img-responsive">
 								</div>
-								<div class="col-sm-6 party-list-item-desc">
+								<div class="col-sm-6 party-list-item-desc span10">
 									<h2 class="party-title"><?php echo $res['title']; ?> <small>(<?php echo $res['acronym']; ?>)</small></h2>
 									<hr>
 									<p class="party-date">2015.03.15</p>

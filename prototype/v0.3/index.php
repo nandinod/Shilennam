@@ -33,23 +33,24 @@
 
 	<div class="row-gov-party">
 		<div class="container-fluid">
-			<h3 class="text-center"><a href="parties.php">Улс төрийн намууд</a></h3>
-			<div class="row">
+			<h3 class="text-center"><a href="list.php?list=party">Улс төрийн намууд</a></h3>
+				<div class="row">
 				<?php
 					$party = new db_cn\Table("party");
-					$results = $party->select("id,title", "1 limit 6");
+					$results = $party->select("id,title,logo_url", "1 limit 6");
+					shuffle($results);
                     foreach ($results as $res) {     
 				?>
-				<div class="col-sm-2">
+				<div class="col-md-2">
 					<div class="well well-md">
-						<img class="img-responsive align-center" src="res/party/democratic.png" alt="Democratic Party">
+						<img class="img-responsive align-center" src="res/party/logos/<?php echo $res['logo_url']; ?>" alt="Democratic Party">
 						<h4 class='text-center'><a href="party.php?p_id=<?php echo $res['id']; ?>"><?php echo $res['title']; ?></a></h4>
 					</div>
 				</div>
                 <?php
                     }
                 ?>
-			</div>
+                </div>
 		</div>
 	</div>
 

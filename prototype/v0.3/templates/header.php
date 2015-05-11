@@ -48,6 +48,7 @@
 	      <li data-target="#slide" data-slide-to="0" class="active"></li>
 	      <li data-target="#slide" data-slide-to="1"></li>
 	      <li data-target="#slide" data-slide-to="2"></li>
+	      <li data-target="#slide" data-slide-to="3"></li>
 	    </ol>
 
 	    <!-- Wrapper for slides -->
@@ -58,10 +59,10 @@
 			$result = $laws->select("text,sanctions,source", "sanctions is not null");
 			for ($a = 0; $a < 4; $a++) {
 				$randomIndex = rand(0, sizeof($result)-1);
-				$random3 = rand(1, 3);
+				$random3 = rand(1, 9);
 		?>
 			<div class="item <?php if ($for_once == false) { echo "active"; $for_once = true; } ?>">
-		      	<img src="res/img/ub<?php echo $random3; ?>.jpg" alt="Steppe" class="img-responsive">
+		      	<img src="res/img/uugand_imgs/img<?php echo $random3; ?>.jpg" alt="Steppe" class="img-responsive">
 		      	<div class="carousel-caption">
 					<?php
 						echo "<h3>".$result[$randomIndex]['source']."</h3>";

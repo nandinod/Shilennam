@@ -55,7 +55,7 @@
 
 		<div class="row">
 			<div class="col-md-4">
-				<a href="parties.php" class="btn btn-default">Бүх намууд</a>
+				<a href="list.php?list=party" class="btn btn-default">Бүх намууд</a>
 			</div>
 		</div>
 		
@@ -149,11 +149,27 @@
 							</tr>
 							<tr>
 								<th>Электрон шуудан</th>
+								<?php
+								$tmp = explode(",", $party_email);
+								$tmp2 = "";
+								foreach ($tmp as $t) {
+									$tmp2 .= "<a href='mailto:".$t."'>" . $t . "</a>, ";
+								}
+								$party_email = $tmp2;
+								?>
 								<td><?php echo $party_email; ?></td>
 							</tr>
 							<tr>
 								<th>Веб сайт</th>
-								<td><?php echo $party_website; ?></td>
+								<?php
+								$tmp = explode(",", $party_website);
+								$tmp2 = "";
+								foreach ($tmp as $t) {
+									$tmp2 .= "<a href='http://".$t."'>" . $t . "</a>, ";
+								}
+								$party_website = $tmp2;
+								?>
+								<td><?php echo $party_website ?></td>
 							</tr>
 						</table>
 					</div>
