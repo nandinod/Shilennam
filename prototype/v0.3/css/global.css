@@ -12,6 +12,13 @@ body {
 .table-nonfluid {
 	width: auto !important;
 }
+.table-borderless,
+.table-borderless tr,
+.table-borderless td,
+.table-borderless th {
+	border: none !important;
+}
+
 
 /* Create a medium height at 40px */
 .navbar-md {min-height:40px}
@@ -554,4 +561,38 @@ body {
 	padding-right: 20px;
 	font-size: 18px;
 	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+
+
+.lists > .container {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.lists {
+	padding-right: 0px;
+}
+.lists .tabs-left {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.lists .tabs-left li {
+	margin-bottom: 5px;
+}
+.lists .tabs-left li:last-child {
+	margin-bottom: 0px;
+}
+.lists .tabs-left li a {
+	font-size: 16px;
+	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	font-weight: bold;
+	padding: 18px 15px;
+}
+.lists .col-xs-9 {
+	border: 1px solid #ddd;
+	border-left: none;
+}
+
+
+.lists #companies .col-sm-6 {
+	margin: 20px 0px;
 }

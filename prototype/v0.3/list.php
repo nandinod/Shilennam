@@ -25,37 +25,6 @@
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-	<style>
-	
-	.lists > .container {
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
-	.lists {
-		padding-right: 0px;
-	}
-	.lists .tabs-left {
-		padding-top: 0px;
-		padding-bottom: 0px;
-	}
-	.lists .tabs-left li {
-		margin-bottom: 5px;
-	}
-	.lists .tabs-left li:last-child {
-		margin-bottom: 0px;
-	}
-	.lists .tabs-left li a {
-		font-size: 16px;
-		font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
-		font-weight: bold;
-		padding: 18px 15px;
-	}
-	.lists .col-xs-9 {
-		border: 1px solid #ddd;
-		border-left: none;
-	}
-
-	</style>
 </head>
 <body>
 	
@@ -64,7 +33,6 @@
 			include "templates/header.php";
 		?>
 	</header>
-
 	
 	<div class="lists">
 		<div class="container row-fluid">
@@ -73,6 +41,7 @@
 				<li><a href="#presidentials" data-toggle="tab" aria-controls="presidentials">Ерөнхийлөгчид нэр дэвшигчид</a></li>
 				<li><a href="#circles" data-toggle="tab" aria-controls="circles">Тойргийн нэр дэвшигчид</a></li>
 				<li><a href="#companies" data-toggle="tab" aria-controls="companies">Байгууллагууд</a></li>
+				<li><a href="#presidential_economics" data-toggle="tab" aria-controls="presidential_economics">Ерөнхийлөгчийн сонгуулын санхүүжилт</a></li>
 			</ul>
 			<div class="col-xs-9 tab-content span10">
 				<div class="tab-pane active" id="parties">
@@ -81,7 +50,7 @@
 						
 						<?php
 							$party = new db_cn\Table("party");
-							$results = $party->select("id, title,acronym, logo_url");
+							$results = $party->select("*");
 							shuffle($results);
 			                foreach ($results as $res) { 
 						?>
@@ -94,10 +63,20 @@
 								<div class="col-sm-6 party-list-item-desc span10">
 									<h2 class="party-title"><?php echo $res['title']; ?> <small>(<?php echo $res['acronym']; ?>)</small></h2>
 									<hr>
-									<p class="party-date">2015.03.15</p>
-									<p class="party-description">Lorem ipsum dolor siicing elit. Quo incidunt deleniti at velit tempore ad nobis odio sint 
-										laboriosam asperiores molestias reprehenderit
-									</p>
+									<p class="party-date"><?php echo $res['founded_in']; ?></p>
+									<!-- <p class="party-description">
+										
+									</p> -->
+									<table class="table table-borderless">
+										<tr>
+											<th>Намын удирдагч</th>
+											<td><?php echo $res['leader']; ?></td>
+										</tr>
+										<tr>
+											<th>Гишүүдийн тоо</th>
+											<td><?php echo $res['member_count']; ?></td>
+										</tr>
+									</table>
 									<div class="party-read">
 										<a href="party.php?p_id=<?php echo $res['id'];?>" class="btn btn-default">Цааш унших</a>
 									</div>
@@ -116,7 +95,44 @@
 					
 				</div>
 				<div class="tab-pane" id="companies">
-					
+					<br>
+					<div class="col-sm-12">
+						<?php 
+							$companies = new db_cn\Table("companies");
+							$results = $companies->select("*");
+							shuffle($results);
+							foreach ($results as $res) {
+						?>
+						
+						<div class="col-sm-6">
+							<table class="table table-bordered">
+								<tr>
+									<th>Байгууллага</th>
+									<td><?php echo $res['company']; ?></td>
+								</tr>
+								<tr>
+									<th>Салбар дугаар</th>
+									<td><?php echo $res['sector_code']; ?></td>
+								</tr>
+								<tr>
+									<th>Салбар аж ахуй</th>
+									<td><?php echo $res['sector_name']; ?></td>
+								</tr>
+							</table>	
+						</div>
+
+						<?php
+							}
+						?>
+					</div>
+				</div>
+				<div class="tab-pane" id="presidential_economics">
+					<br>
+					<div class="col-sm-12">
+						<?php 
+							
+						?>
+					</div>
 				</div>
 			</div>
 		</div>
