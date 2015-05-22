@@ -52,7 +52,9 @@
 					?>
 					<div class="gov-party col-sm-1 col-centered">
 						<div class="well well-xs center-block">
-							<img src="<?php echo $party_img; ?>" alt="">
+							<div class="gov-party-img-holder">
+								<img src="<?php echo $party_img; ?>" alt="">
+							</div>
 							<h4><a href="party.php?p_id=<?php echo $res['id']; ?>" title="<?php echo $res['title']; ?>"><?php echo $res['acronym']; ?></a></h4>
 						</div>
 					</div>
