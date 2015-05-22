@@ -3,6 +3,7 @@
 <head>
 	<?php
 		include 'backend/DB_CN.php';
+		include 'backend/helper.php';
 	?>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,23 +35,33 @@
 	<div class="row-gov-party">
 		<div class="container-fluid">
 			<h3 class="text-center"><a href="list.php?list=party">Улс төрийн намууд</a></h3>
-				<div class="row">
-				<?php
-					$party = new db_cn\Table("party");
-					$results = $party->select("id,title,logo_url", "1 limit 6");
-					shuffle($results);
-                    foreach ($results as $res) {     
-				?>
-				<div class="col-md-2">
-					<div class="well well-md">
-						<img class="img-responsive align-center" src="res/party/logos/<?php echo $res['logo_url']; ?>" alt="Democratic Party">
-						<h4 class='text-center'><a href="party.php?p_id=<?php echo $res['id']; ?>"><?php echo $res['title']; ?></a></h4>
+			<?php
+				$party = new db_cn\Table("party");
+				$results = $party->select("id,title,acronym, logo_url");
+				$broken_results = break_array($results, 11);
+				foreach ($broken_results as $result) {
+					echo "<div class='row-centered'>";
+
+					foreach ($result as $res) {
+						$party_img = "res/png/img_error.jpg";
+	                	if (empty($res['logo_url'])) {
+	                		$party_img = "res/png/img_error.jpg";
+	                	} else {
+	                		$party_img = "res/party/logos/".$res['logo_url'];
+	                	}
+					?>
+					<div class="gov-party col-sm-1 col-centered">
+						<div class="well well-xs center-block">
+							<img src="<?php echo $party_img; ?>" alt="">
+							<h4><a href="party.php?p_id=<?php echo $res['id']; ?>" title="<?php echo $res['title']; ?>"><?php echo $res['acronym']; ?></a></h4>
+						</div>
 					</div>
-				</div>
-                <?php
-                    }
-                ?>
-                </div>
+					<?php
+					}
+					echo "</div>";
+					
+                }
+            ?>
 		</div>
 	</div>
 

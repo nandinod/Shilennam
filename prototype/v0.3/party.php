@@ -79,11 +79,18 @@
 				$party_burt_certif_date = $party_res['burtgel_certificate_date'];
 				$party_direction = $party_res['direction'];
 				$party_member_count = $party_res['member_count'];
+
+				$party_img = "res/png/img_error.jpg";
+            	if (empty($party_logo)) {
+            		$party_img = "res/png/img_error.jpg";
+            	} else {
+            		$party_img = "res/party/logos/".$party_logo;
+            	}
 				?>
 			<!-- Party logo goes here -->
 			<div class="col-md-6">
 				<div class="party_logo">
-					<img src="res/party/logos/<?php echo $party_logo; ?>" alt="<?php echo $party_acronym; ?>">
+					<img src="<?php echo $party_img; ?>" alt="<?php echo $party_acronym; ?>">
 				</div>
 			</div>
 

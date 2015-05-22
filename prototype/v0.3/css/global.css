@@ -19,6 +19,17 @@ body {
 	border: none !important;
 }
 
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:center;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
 
 /* Create a medium height at 40px */
 .navbar-md {min-height:40px}
@@ -250,26 +261,21 @@ body {
 .row-gov-party {
 	background: url("../res/patt/swirl_pattern2.png") repeat;
 }
-.row-gov-party > .container-fluid > h3 {
-	margin: 30px 0px;
+.row-gov-party > .container-fluid .gov-party {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
-.row-gov-party > .container-fluid > h3 > a {
-	color: #1F294C;
+.row-gov-party > .container-fluid .gov-party .well {
+	background-color: #fff;
 }
-.row-gov-party > .container-fluid {
-	padding-bottom: 30px;
+.row-gov-party > .container-fluid .gov-party img {
+	width: 100%;
+	height: auto;
 }
-.row-gov-party > .container-fluid > .col-sm-2 > .well {
-	text-align: center;
+.row-gov-party > .container-fluid .gov-party h5 {
+	min-height: 20px;
 }
-.row-gov-party > .container-fluid > .col-sm-2 > .well img {
-	width: auto;
-	max-height: 100px;
-}
-.row-gov-party > .container-fluid > .col-sm-2 > .well h4 {
-	text-align: center;
-	color: #4174B6;
-}
+
 
 .row-gov-party-eco > .container {
 	padding-bottom: 30px;
@@ -483,30 +489,36 @@ body {
 
 
 .party-lists .party-list-item {
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 .party-lists .party-list-item .party-list-item-container {
 	padding: 0px;
 	border: none;
 	box-shadow: 0px 0px 8px #CED4DB;
 	background-color: white;
-	border-radius: 15px;
+	border-radius: 3px;
 	margin: 0px;
 }
 .party-lists .party-list-item .party-list-item-container .party-list-item-img {
 	padding: 30px 70px;
-	background-color: #F6F6F7;
-	box-shadow: 2px 0px 3px #CCCCCC;
-	vertical-align: top;
+	background-color: #ffffff;
+	vertical-align: middle;
+}
+.party-lists .party-list-item .party-list-item-container .party-list-item-img img {
+	margin: 0 auto;
 }
 .party-lists .party-list-item .party-list-item-container .party-list-item-desc {
 	padding: 0px 25px;
+	background-color: #F6F6F7;
+	box-shadow: -2px 0px 8px 0px #CCCCCC;
+	z-index: 2;
 }
 .party-lists .party-list-item .party-list-item-container .row .panel-body {
 	padding: 0px !important;
 	margin: 0px;
 	height: 100%;
+
 }
 .party-lists .party-list-item .party-list-item-container .row {
 	padding-left: 15px;
@@ -552,15 +564,20 @@ body {
 	margin-top: 35px;
 }
 .party-lists .party-list-item .party-list-item-container .party-read a {
-	border-bottom-right-radius: 15px;
+	border-bottom-right-radius: 3px;
 	border-bottom-left-radius: 0px;
-	border-top-left-radius: 15px;
+	border-top-left-radius: 3px;
 	border-top-right-radius: 0px;
 	border: 0px;
 	padding-left: 20px;
 	padding-right: 20px;
 	font-size: 18px;
+	background-color: transparent;
 	font-family: 'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+.party-lists .party-list-item .party-list-item-container .party-read a:hover {
+	background-color: #9B9FA3;
+	color: white;
 }
 
 

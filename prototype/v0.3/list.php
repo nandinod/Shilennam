@@ -51,14 +51,19 @@
 						<?php
 							$party = new db_cn\Table("party");
 							$results = $party->select("*");
-							shuffle($results);
-			                foreach ($results as $res) { 
+			                foreach ($results as $res) {
+			                	$party_img = "res/png/img_error.jpg";
+			                	if (empty($res['logo_url'])) {
+			                		$party_img = "res/png/img_error.jpg";
+			                	} else {
+			                		$party_img = "res/party/logos/".$res['logo_url'];
+			                	}
 						?>
 
 						<div class="col-sm-12 party-list-item">
 							<div class="party-list-item-container container-fluid well well-xs row fluid">
 								<div class="col-sm-6 party-list-item-img span2">
-									<img src="res/party/logos/<?php echo $res['logo_url']; ?>" alt="" class="img-responsive">
+									<img src="<?php echo $party_img; ?>" alt="" class="img-responsive">
 								</div>
 								<div class="col-sm-6 party-list-item-desc span10">
 									<h2 class="party-title"><?php echo $res['title']; ?> <small>(<?php echo $res['acronym']; ?>)</small></h2>
@@ -69,7 +74,7 @@
 									</p> -->
 									<table class="table table-borderless">
 										<tr>
-											<th>Намын удирдагч</th>
+											<th>Намын дарга</th>
 											<td><?php echo $res['leader']; ?></td>
 										</tr>
 										<tr>
