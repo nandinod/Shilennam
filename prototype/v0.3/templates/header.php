@@ -3,7 +3,7 @@
 			<div class="pull-left">
 				<a href="#" class="btn btn-sm">Тусламж</a>
 				<a href="#" class="btn btn-sm">Бидэнтэй холбогдох</a>
-				<a href="manage/" class="btn btn-sm">Менежмент</a>
+				<!-- <a href="manage/" class="btn btn-sm">Менежмент</a> -->
 			</div>
 			<div class="pull-right">
 				<a href="https://www.facebook.com/pages/Shilennam/633649973430676" target="_blank" class="btn btn-sm"><img class='img-responsive' src="res/png/fb-white.png" alt="png"></a>
@@ -18,24 +18,25 @@
 	<div class="row-menu">
 		<nav class="navbar navbar-default navbar-md">
 			<div class="container">
-				<div id="generated-menus">
-					<div class="navbar-header">
+				<div id="generated-menus" style="height: 35px;">
+					<!-- <div class="navbar-header">
 						<a href="index.php" class="navbar-brand">Шилэн Нам</a>
-					</div>
+					</div> -->
 					<ul class="nav navbar-nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">НАМУУДЫН САНХҮҮЖИЛТ <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">УЛСЫН ТӨСӨВ</a></li>
-								<li><a href="#">ХАНДИВААР</a></li>
-								<li><a href="#">ГИШҮҮДИЙН ТАТВАР</a></li>
-								<li><a href="#">ХУУЛИАР ЗӨВШӨӨРСӨН</a></li>
-								<li><a href="#">БУСАД</a></li>
+								<li><a href="economics.php?year=all#eco" style="text-transform: uppercase;">Сонгуулийн санхүүжилт</a></li>
+								<li><a href="economics.php?year=all#eco" style="text-transform: uppercase;">Намуудын санхүүжилт</a></li>
+								<li><a href="economics.php?year=all#eco" style="text-transform: uppercase;">Эдийн засгийн ангилал</a></li>
+								<li><a href="economics.php?year=all#eco">БУСАД</a></li>
 							</ul>
 						</li>
 						<li><a href="news.php#news">МЭДЭЭ МЭДЭЭЛЭЛ</a></li>
 						<li><a href="laws.php#laws">ХУУЛИАС</a></li>
+						<li style="margin-top: -11px;"><a href="index.php" style="padding: 0px;"><div id="logo"></div></a></li>
 						<li><a href="#">УЛС ТӨРЧДИЙН ХАМААРАЛ</a></li>
-						<li><a href="#">ХОЛБООСУУД</a></li>
+						<li><a href="connections.php#connection">ХОЛБООСУУД</a></li>
+						<li><a href="#">БУСАД</a></li>
 					</ul>
 				</div>
 			</div>
@@ -59,7 +60,7 @@
 			$result = $laws->select("text,sanctions,source", "sanctions is not null");
 			for ($a = 0; $a < 4; $a++) {
 				$randomIndex = rand(0, sizeof($result)-1);
-				$random3 = rand(1, 9);
+				$random3 = rand(1, 8);
 		?>
 			<div class="item <?php if ($for_once == false) { echo "active"; $for_once = true; } ?>">
 		      	<img src="res/img/uugand_imgs/img<?php echo $random3; ?>.jpg" alt="Steppe" class="img-responsive">

@@ -415,7 +415,7 @@
 							<tr>
 								<th>Огноо</th>
 				      			<th><a href='party.php?p_id=<?php echo $p_id; ?>&total_income=request#party'>Нийт санхүүжилт</a></th>
-				      			<th><a href='party.php?p_id=<?php echo $p_id; ?>&total_outcome=request#party'>Нийт үрэлт</a></th>
+				      			<th><a href='party.php?p_id=<?php echo $p_id; ?>&total_outcome=request#party'>Нийт зарцуулалт</a></th>
 				      			<th>Бэлэн байгаа</th>
 				      			<th>Өр зээл</th>
 				      		</tr>

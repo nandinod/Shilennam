@@ -41,7 +41,7 @@
 				<li><a href="#presidentials" data-toggle="tab" aria-controls="presidentials">Ерөнхийлөгчид нэр дэвшигчид</a></li>
 				<li><a href="#circles" data-toggle="tab" aria-controls="circles">Тойргийн нэр дэвшигчид</a></li>
 				<li><a href="#companies" data-toggle="tab" aria-controls="companies">Байгууллагууд</a></li>
-				<li><a href="#presidential_economics" data-toggle="tab" aria-controls="presidential_economics">Ерөнхийлөгчийн сонгуулын санхүүжилт</a></li>
+				<li><a href="#presidential_economics" data-toggle="tab" aria-controls="presidential_economics">Ерөнхийлөгчийн сонгуулийн санхүүжилт</a></li>
 			</ul>
 			<div class="col-xs-9 tab-content span10">
 				<div class="tab-pane active" id="parties">

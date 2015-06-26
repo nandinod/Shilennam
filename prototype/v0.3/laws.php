@@ -54,7 +54,10 @@
 	
 	<div class="container" id="laws">
 		<h1 class='text-center'>Хуулиас</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur odit unde accusantium deserunt cumque soluta ea nemo neque voluptatibus et sequi, tempora, obcaecati officia. Dolore culpa ratione reiciendis ducimus minus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate beatae ratione magni minima voluptatem doloremque, tenetur facilis soluta blanditiis, vero autem laboriosam, labore quos maiores consectetur? Deleniti sed, quos veritatis.</p>
+
+		<p style="font-size: 18px;">
+			Улс төрийн намуудын санхүүжилттэй холбоотой хуулийн заалтуудаас түүвэрлэн авч ашиглахад хялбар байдлаар бэлтгэлээ. Хуулийн эхтэй нь танилцахыг хүсвэл <a target="_blank" href="http://www.legalinfo.mn">www.legalinfo.mn</a> сайт руу орж үзнэ үү.
+		</p>
 		
 		<ul class='list-group'>
 			<li class='list-group-item'>
